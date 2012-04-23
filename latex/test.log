@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.21)  23 APR 2012 18:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.21)  23 APR 2012 19:12
 entering extended mode
  %&-line parsing enabled.
 **test.tex
@@ -287,7 +287,7 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 
-LaTeX Warning: Citation `Gil:02' on page 4 undefined on input line 167.
+LaTeX Warning: Citation `Gil:02' on page 4 undefined on input line 175.
 
 No file test.bbl.
 (./test.ind [4] [5
@@ -299,8 +299,8 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5131 strings out of 495061
- 72590 string characters out of 1182621
+ 5132 strings out of 495061
+ 72602 string characters out of 1182621
  149910 words of memory out of 3000000
  8214 multiletter control sequences out of 15000+50000
  13504 words of font info for 49 fonts, out of 3000000 for 9000
@@ -321,9 +321,9 @@ s8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
 /share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf
 -texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on test.pdf (5 pages, 210447 bytes).
+Output written on test.pdf (5 pages, 211563 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
+ 146 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

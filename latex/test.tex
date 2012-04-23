@@ -156,6 +156,14 @@ c_i = E_k(m_i \oplus c_{i-1})
 
 where the initial message block is xor:ed with an initialization vector, \emph{IV}, which should not be repeated. The point with the initialization vector is just to hide repetition in the first block. Being lost, the whole message can still be recovered, except for the very first block.
 
+\begin{equation}
+\begin{split}
+m_0 = D_k(c_0) \oplus IV \\
+m_{n-i} = D_k(c_{n-1}) \oplus c_{n-2}
+\end{split}
+\end{equation}
+
+
  
 \paragraph{Outline}
 The remainder of this article is organized as follows.
