@@ -1,0 +1,183 @@
+\title{A Very Simple \LaTeXe{} Template}
+\author{
+        Vitaly Surazhsky \\
+                Department of Computer Science\\
+        Technion---Israel Institute of Technology\\
+        Technion City, Haifa 32000, \underline{Israel}
+            \and
+        Yossi Gil\\
+        Department of Computer Science\\
+        Technion---Israel Institute of Technology\\
+        Technion City, Haifa 32000, \underline{Israel}
+}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\usepackage{makeidx}
+\makeindex
+
+\include{pygments}
+
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is the paper's abstract \ldots
+\end{abstract}
+
+\section{Introduction}
+This is time for all good men to come to the aid of their party!
+
+\subsection{split}
+\scriptsize
+\input{split}
+
+\subsection*{Regular Expressions}
+The module to import in python is called re. A regular expression is written
+
+\input{findall}
+
+where the \emph{r} actually means \emph{raw string} instead of \emph{regular expression}. The + and * operators are called \emph{Kleene operators} after Stephen C. Kleene.
+
+\subsection*{Finite State Machine (FSM)}\index{Finite State Machine}
+A visual representation or a pictorial equivalent to regular expressions. A \textbf{non-deterministic FSM}\index{Finite State Machine!non-deterministic FSM} includes epsilon transitions or ambiguity. 
+A \textbf{deterministic FSM}/\textbf{lock-step FSM}\index{Finite State Machine!deterministic FSM} includes \textbf{no} epsilon edges or ambiguity. However, every non-deterministic FSM has a corresponding deterministic FSM that accepts exaclty the same strings. Non-deterministic FSMs are not more powerful, they are just more convenient.
+
+\subsection*{Server}
+A server is a machine optimized for sitting in a closet and hosting files.
+
+\subsection*{HyperText Markup Language (HTML)}\index{HTML}
+Use the tags \emph{strong}\index{HTML!strong} and \emph{em}\index{HTML!em} when the contents of your page requires that certain words or phrases be stressed. If you are only highlighting for visual effect use the tags \emph{b}\index{HTML!b} and \emph{i}\index{HTML!i}.
+
+\subsubsection*{HTTP Request}
+GET request: GET /foo HTTP/1.1
+
+\subsubsection*{HTTP Response}\index{HTTP Response}
+A response can be static\index{HTTP Response!static}, which is a pre-written file or dynamic\index{HTTP Response!dynamic}, which is a page made on the fly by programs called web applications\index{HTTP Response!web application}.
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Response: HTTP/1.1 200 OK
+\item Date: Tue Mar 2012 04:33:33 GMT
+\item Server: Apache /2.2.3 - Similar to User-Agent header on the request. Best to make this up, otherwise you're just giving away free information to a would be hacker that want to know what vulnerability that works against you.
+\item Content-Type: text/html; charset=utf-8
+\item Content-Length: 1539
+\end{list}
+
+\subsubsection*{Status Codes}
+200 OK
+302 Found - The document is located somewhere else
+404 Not Found
+500 Server Error - The server broke trying to handle your request
+
+\subsubsection*{HTML Header}\index{HTML!HTML Header}
+Valid headers, such as \emph{User-Agent}\index{HTML!HTML Header!User-Agent}, \emph{Host}\index{HTML!HTML Header!Host}, but really, you can make up all the headers you want.
+
+Use the \emph{$<$br /$>$}\index{HTML!br} tag instead of \emph{$<$br$>$} for an inline line break, but the \emph{p} tag to make a block.
+
+Use the \emph{span}\index{HTML!span} for an inline container, which content can be styled, and \emph{div}\index{HTML!div} for a block container.
+
+If your browser crashes, you should quit using Internet Explorer.
+
+\section*{Cryptography}
+
+\subsection*{Shannon's Keyspace Theorem}
+\label{sec:shannon's_keyspace_theorem}
+
+\subsection*{Monoalphabetic Substitution Cipher}\index{Monoalphabetic Substitution Ciper}
+
+Each letter in the alphabet is mapped to a substitution letter.
+
+\textbf{CT only attack}. "E" is the most common letter in the English language (appears about 12.7\% of the time), which will appear as the most frequent coded letter in the cipher. Next is "T" (9.1\%), "A" (8.1\%), etc. Next step is to study frequency of pairs of letters: "he", "an", "in", etc.
+
+One way to prove that the cipher is imperfect, is to use \emph{Shannon's Keyspace Theorem}\ref{sec:shannon's_keyspace_theorem}. Assume a 26-letter alphabet,
+
+\begin{equation}
+|K| < |M|, 26! < 2^{89}, 26! < 26^{19}.
+\end{equation}
+
+Another way to prove the cipher's imperfection is by showing a ciphertext \emph{c} that could not decrypt to a message \emph{m} for any key \emph{k},
+
+\begin{equation}
+c = \mathsf{aa}, m = \mathsf{cs}
+\end{equation}
+
+\subsection*{Randomness}
+\textbf{Kolmogorov Complexity}\index{Kolmogorov Complexity}.
+$K(s) = $length of the shortest possible description of s [Andrey Kolmogorov (1903-1987)]. If there isn't any short program that can describe the sequence, that's an indication that the sequence is random, e.i, \emph{s} is random if $K(s) = |s| + C$. There's no simplier way to understand the sequence other than to see the whole sequence. However, the Kolmogorov Complexity is \textbf{uncomputable}.
+
+\textbf{Statistical Tests} - can only show non-randomness. We can always find some non-random sequence that satisfies all of our statistical tests.
+
+\textbf{Physically Random Events}\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Quantum Mechanics
+\item Thermal Noise
+\item User key presses/mouse movements (?)
+\end{list}
+
+\textbf{Pseudo-Random Number Generator (PRNG)}\index{Pseudo-Random Number Generator} takes a small amount of physical randomness and turn them into a long sequence of apparently "random" bits. This can be done by extracting a seed once from a \emph{random pool} and reusing it in every step, encrypting a sequence of values (which can be a counter).
+
+Does this produce a sequence that appears random? No, it repeats values too infrequently, why the key is changed every few million outputs. Another concern is whether the pool of randomness is good enough. On unix machines, this pool is stored in \emph{/dev/random} and is collecting events that are believed to be random, like user interactions. A popular PRNG is \emph{Fortuna}.
+ 
+\subsection*{Cipher Block Chaning (CBC}
+Assuming \emph{E} has perfect secrecy (impossible since $|K| \ge |M|$), an attacker can still learn the length of the message and which blocks in \emph{m} are equal from a captured \emph{c}, where
+
+\begin{equation}
+c_i = E_k(m_i)
+\end{equation}
+
+With CBC, 
+
+\begin{equation}
+\begin{split}
+c_0 = E_k(m_0 \oplus IV) \\
+c_i = E_k(m_i \oplus c_{i-1})
+\end{split}
+\end{equation}
+
+where the initial message block is xor:ed with an initialization vector, \emph{IV}, which should not be repeated. The point with the initialization vector is just to hide repetition in the first block. Being lost, the whole message can still be recovered, except for the very first block.
+
+ 
+\paragraph{Outline}
+The remainder of this article is organized as follows.
+Section~\ref{previous work} gives account of previous work.
+Our new and exciting results are described in Section~\ref{results}.
+Finally, Section~\ref{conclusions} gives the conclusions.
+
+\section{Previous work}\label{previous work}
+A much longer \LaTeXe{} example was written by Gil~\cite{Gil:02}.
+
+\section{Results}\label{results}
+In this section we describe the results.
+
+
+
+\section{Conclusions}\label{conclusions}
+We worked hard, and achieved very little.
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+\printindex
+
+\end{document}
+This is never printed

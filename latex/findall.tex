@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{re}
+\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s}{r"}\PY{l+s}{[0-9]}\PY{l+s}{"}\PY{p}{,}\PY{l+s}{"}\PY{l+s}{1+2==3}\PY{l+s}{"}\PY{p}{)}
+\PY{c}{\PYZsh{}--> ['1','2','3']}
+\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s}{r"}\PY{l+s}{[0-9][0-9]}\PY{l+s}{"}\PY{p}{,}\PY{l+s}{"}\PY{l+s}{12345}\PY{l+s}{"}\PY{p}{)}
+\PY{c}{\PYZsh{}--> ['12','34']}
+\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s}{r"}\PY{l+s}{[0-9]+}\PY{l+s}{"}\PY{p}{,}\PY{l+s}{"}\PY{l+s}{13 from 1 in 1776}\PY{l+s}{"}\PY{p}{)}
+\PY{c}{\PYZsh{}--> ['13', '1', '1776'] Maximal Munch. Don't stop early. go all the way}
+\end{Verbatim}
