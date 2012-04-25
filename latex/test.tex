@@ -23,35 +23,109 @@
 
 \usepackage{amsmath}
 
+%for images
+\usepackage{graphicx}
+
 \begin{document}
 \maketitle
 
-\begin{abstract}
-This is the paper's abstract \ldots
-\end{abstract}
+\section{python}
 
-\section{Introduction}
-This is time for all good men to come to the aid of their party!
+\subsection{Testing}
+\scriptsize
+\input{testing}
+
+\subsection{Profiling}
+\input{profiling}
 
 \subsection{split}
-\scriptsize
 \input{split}
 
-\subsection*{Regular Expressions}
+\subsection{itertools}\index{itertools}
+
+\subsubsection{permutations}
+\input{permutations}
+
+\subsection{Generator Expressions}\index{Generator Expressions}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item less indentation, compared to nested for-loops
+\item stop early, compared to a list comprehension that has to do all the work
+\item easy to edit, easy to move around constraints without having to worry about getting the indentation right
+\end{list}
+
+\input{generator_expressions}
+
+\subsection{Generator Functions}\index{Generator Functions}
+
+Allows us to deal with infinite sequences.
+
+\input{generator_functions}
+
+\subsection{The Law of Diminishing Returns}
+
+\subsection{for-loops}
+\input{forloop}
+
+\subsection{Substring}
+\input{substring}
+
+\subsection{Benchmarking}
+\input{benchmarking}
+
+\subsection{Translation Table}
+\input{translation_table}
+
+\subsection{Future Imports}\index{python!Future Imports}
+
+In python 2.x, you can do integer division. In python 3, integer division returns a float. If you want this kind of behaviour in python 2.x, do
+
+\input{future_imports}
+
+\subsection{Regular Expressions}\index{Regular Expressions}
 The module to import in python is called re. A regular expression is written
 
+\subsubsection{findall}\index{Regular Expressions!findall}
 \input{findall}
 
-where the \emph{r} actually means \emph{raw string} instead of \emph{regular expression}. The + and * operators are called \emph{Kleene operators} after Stephen C. Kleene.
+where the \emph{r} actually means \emph{raw string} instead of \emph{regular expression}. The + and * operators are called \emph{Kleene Operators}\index{Regular Expressions!Kleene Operators} after Stephen C. Kleene.
+
+\subsubsection{search}\index{Regular Expressions!search}
+\input{search}
+
+\begin{tabular}{r | l}
+	\textbackslash b & word boundary \\
+	* & Kleene Operator \\
+	+ & Kleene Operator
+\end{tabular}
+
+\subsubsection{split}\index{Regular Expressions!split}
+\input{re_split}
+
+\section{Some Other Section}
 
 \subsection*{Finite State Machine (FSM)}\index{Finite State Machine}
 A visual representation or a pictorial equivalent to regular expressions. A \textbf{non-deterministic FSM}\index{Finite State Machine!non-deterministic FSM} includes epsilon transitions or ambiguity. 
-A \textbf{deterministic FSM}/\textbf{lock-step FSM}\index{Finite State Machine!deterministic FSM} includes \textbf{no} epsilon edges or ambiguity. However, every non-deterministic FSM has a corresponding deterministic FSM that accepts exaclty the same strings. Non-deterministic FSMs are not more powerful, they are just more convenient.
+A \textbf{deterministic FSM}/\textbf{lock-step FSM}\index{Finite State Machine!deterministic FSM} includes  epsilon edges or ambiguity. However, every non-deterministic FSM has a corresponding deterministic FSM that accepts exaclty the same strings. Non-deterministic FSMs are not more powerful, they are just more convenient.
+
+\subsection{Aspect-oriented Programming}
+Separate debugging/efficiency statements and the correctness program.
 
 \subsection*{Server}
 A server is a machine optimized for sitting in a closet and hosting files.
 
-\subsection*{HyperText Markup Language (HTML)}\index{HTML}
+\subsection*{Hyper Text Markup Language (HTML)}\index{HTML}
+
+Invented by Tim Berners-Lee around 1990 and credited with inventint the world-wide web.
+
 Use the tags \emph{strong}\index{HTML!strong} and \emph{em}\index{HTML!em} when the contents of your page requires that certain words or phrases be stressed. If you are only highlighting for visual effect use the tags \emph{b}\index{HTML!b} and \emph{i}\index{HTML!i}.
 
 \subsubsection*{HTTP Request}
@@ -137,8 +211,21 @@ $K(s) = $length of the shortest possible description of s [Andrey Kolmogorov (19
 \textbf{Pseudo-Random Number Generator (PRNG)}\index{Pseudo-Random Number Generator} takes a small amount of physical randomness and turn them into a long sequence of apparently "random" bits. This can be done by extracting a seed once from a \emph{random pool} and reusing it in every step, encrypting a sequence of values (which can be a counter).
 
 Does this produce a sequence that appears random? No, it repeats values too infrequently, why the key is changed every few million outputs. Another concern is whether the pool of randomness is good enough. On unix machines, this pool is stored in \emph{/dev/random} and is collecting events that are believed to be random, like user interactions. A popular PRNG is \emph{Fortuna}.
+
+\subsection{Secret Sharing}
+
+Share a 100-bit long secret among 4 people requires 300 key bits.
+\begin{equation}
+\begin{split}
+A: m \oplus k_1 \oplus k_2 \oplus k_3 \\
+B: k_1 \\
+C: k_2 \\
+D: k_3
+\end{split}
+\end{equation}
  
-\subsection*{Cipher Block Chaning (CBC}
+\subsection*{Cipher Block Chaning (CBC) Mode}\index{CBC Mode}
+
 Assuming \emph{E} has perfect secrecy (impossible since $|K| \ge |M|$), an attacker can still learn the length of the message and which blocks in \emph{m} are equal from a captured \emph{c}, where
 
 \begin{equation}
@@ -163,7 +250,103 @@ m_{n-i} = D_k(c_{n-1}) \oplus c_{n-2}
 \end{split}
 \end{equation}
 
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Requires the encryption function to be invertable
+\item Does not need the IV to be kept secret, used like another cipher text block. Important is just to not reuse the IV
+\item Does not provide any protection against tampering
+\item The final cipher text block depends on all message blocks
+\end{list}
 
+\subsection{Lexical Analysis}
+
+Break something down into words. A \emph{token} is the smallest unit of lexical analysis output.
+
+\begin{tabular}{r | l}
+	LANGLE & $<$ \\
+	LANGLESLASH & $<$\slash \\
+	RANLGE & $>$ \\
+	EQUAL & = \\
+	STRING & "google.com" \\
+	WORD & Welcome!
+\end{tabular}
+
+\input{tokens}
+
+\subsection*{Counter (CTR) Mode}\index{CTR Mode}
+
+The IV is usually devided into a \emph{nonce} and the counter in 64-blocks each (for AES).
+
+\begin{equation}
+\begin{split}
+c_i = E_k(\textsf{nonce}||i) \oplus m_i \\
+m_i = c_i \oplus E_k(\textsf{nonce}||i)
+\end{split}
+\end{equation}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item The encryption function does not need to be invertable
+\item The cipher text is a little longer than the message
+\item If you encrypt the samme message twice, you will get different ciphertexts
+\item Parallelizable (unlike CBC). The encryption function does not depend on the message and can be computed in advance. if you have 3 AES engines encryption will work 3 times as fast
+\item Does not need padding
+\item In every single aspect CTR Mode dominates CBC and is the recommended mode to be used today
+\end{list}
+
+\subsection*{Cipher Feedback (CFB) Mode}
+
+Uses an additional parameter $s < n$, which is the size of the message block that is less than the normal block size of the cipher.
+
+\begin{equation}
+\begin{split}
+x_0 = IV \\
+x_i = x_{i-1}[s:]||c_{i-1} \\
+c_i = E_k(x_i)[:s] \oplus m_i
+\end{split}
+\end{equation}
+
+Decryption
+
+\begin{equation}
+\begin{split}
+m_i = c_i \oplus E_k(x_i)[:s] \\
+x_i = x_{i-1}[s:]||c_i \\
+x_0 = IV
+\end{split}
+\end{equation}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Does not require the encryption function to be invertable
+\item Does not need the IV to be kept secret, used like another cipher text block. Important is just to not reuse the IV.
+\item Can use small message blocks, by only encrypt the message in chunks of size s. Turns the block cipher into a stream cipher
+\item Does not provide any protection against tampering
+\item The final cipher text block depends on all message blocks
+\end{list}
+
+%\includegraphics[scale=1]{cbc.eps}
  
 \paragraph{Outline}
 The remainder of this article is organized as follows.
