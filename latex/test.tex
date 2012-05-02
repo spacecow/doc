@@ -18,8 +18,7 @@
 \makeindex
 
 \include{pygments}
-
-\usepackage{hyperref}
+\include{listings}
 
 \usepackage{amsmath}
 
@@ -29,7 +28,7 @@
 \begin{document}
 \maketitle
 
-\section{python}
+\section{python}\index{python}
 
 \subsection{Testing}
 \scriptsize
@@ -38,8 +37,22 @@
 \subsection{Profiling}
 \input{profiling}
 
-\subsection{split}
+\subsection{string}\index{python!string}
+
+\subsubsection{String Substitution}\index{python!string!Substitution}
+
+\input{string_substitution}
+
+\subsubsection{split}\index{python!string!split}
 \input{split}
+
+\subsection{hash}\index{python!hash}
+
+\subsubsection{get}\index{python!hash!get}
+
+Does not generate a \emph{KeyError} when referencing a key that does not exist in the hash, unlike using the sqare brackets.
+
+\input{hash_get}
 
 \subsection{itertools}\index{itertools}
 
@@ -110,6 +123,9 @@ where the \emph{r} actually means \emph{raw string} instead of \emph{regular exp
 \subsubsection{split}\index{Regular Expressions!split}
 \input{re_split}
 
+\subsection{sub}\index{Regular Expressions!sub}
+\input{re_sub}
+
 \section{Some Other Section}
 
 \subsection*{Finite State Machine (FSM)}\index{Finite State Machine}
@@ -122,16 +138,24 @@ Separate debugging/efficiency statements and the correctness program.
 \subsection*{Server}
 A server is a machine optimized for sitting in a closet and hosting files.
 
-\subsection*{Hyper Text Markup Language (HTML)}\index{HTML}
+\section{Hyper Text Markup Language (HTML)}\index{HTML}
 
 Invented by Tim Berners-Lee around 1990 and credited with inventint the world-wide web.
 
 Use the tags \emph{strong}\index{HTML!strong} and \emph{em}\index{HTML!em} when the contents of your page requires that certain words or phrases be stressed. If you are only highlighting for visual effect use the tags \emph{b}\index{HTML!b} and \emph{i}\index{HTML!i}.
 
-\subsubsection*{HTTP Request}
+\subsection{HTTP Request}\index{HTML!Request}
+
+\subsubsection{GET Request}\index{HTML!Request!GET}
+
+GET requests are often used for fetching documents and GET parameters are usually used to describe which document we are looking for or what page we are on, etc. They are included in the URL and are ok to cache, should not be used to change the server and are affected by the maximum URL length.
 GET request: GET /foo HTTP/1.1
 
-\subsubsection*{HTTP Response}\index{HTTP Response}
+\subsubsection{POST Request}\index{HTML!Request!POST}
+
+POST parameters are included in the request body, have no max length and are often used for updating data. They are almost never cached.
+
+\subsection{HTTP Response}\index{HTTP Response}
 A response can be static\index{HTTP Response!static}, which is a pre-written file or dynamic\index{HTTP Response!dynamic}, which is a page made on the fly by programs called web applications\index{HTTP Response!web application}.
 
 \begin{list}{*}{
@@ -278,7 +302,21 @@ Break something down into words. A \emph{token} is the smallest unit of lexical 
 	WORD & Welcome!
 \end{tabular}
 
+A \emph{Lexical Analyzer} or \emph{lexer} is a collection of token definitions, with the first listed is the winner.
+
 \input{tokens}
+
+A state can be either \emph{exclusive} or \emph{inclusive}.
+
+\input{token_states}
+
+\subsection{JavaScript}\index{JavaScript}
+
+\emph{Identifier} are \emph{variable} names or \emph{function} names.
+
+\input{factorial}
+\input{token_eolcomment}
+\input{token_identifier}
 
 \subsection*{Counter (CTR) Mode}\index{CTR Mode}
 
@@ -354,16 +392,25 @@ Section~\ref{previous work} gives account of previous work.
 Our new and exciting results are described in Section~\ref{results}.
 Finally, Section~\ref{conclusions} gives the conclusions.
 
-\section{Previous work}\label{previous work}
-A much longer \LaTeXe{} example was written by Gil~\cite{Gil:02}.
+\section{Google App Engine}\index{Google App Engine}
 
-\section{Results}\label{results}
-In this section we describe the results.
+\subsection{Handlers}\index{Google App Engine!Handlers}
+
+\input{handler}
+
+\subsection{Forms}\index{Google App Engine!Forms}
+
+\input{engine_validations}
+
+User input need to be esacped.
+
+\input{engine_escape_html}
+
+\subsubsection{Redirection}\index{Google App Engine!Forms!Redirection}
+
+With redirection one can reload the page without having resubmitting a form. It's also good practice to have distinct pages for forms and successes.
 
 
-
-\section{Conclusions}\label{conclusions}
-We worked hard, and achieved very little.
 
 \bibliographystyle{abbrv}
 \bibliography{main}
@@ -371,4 +418,3 @@ We worked hard, and achieved very little.
 \printindex
 
 \end{document}
-This is never printed

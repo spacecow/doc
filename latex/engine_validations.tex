@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{form}\PY{o}{=}\PY{l+s}{"""}
+\PY{l+s}{  <form method=}\PY{l+s}{"}\PY{l+s}{post}\PY{l+s}{"}\PY{l+s}{>}
+\PY{l+s}{  <label>Free Field <input name=}\PY{l+s}{"}\PY{l+s}{q}\PY{l+s}{"}\PY{l+s}{ value=}\PY{l+s}{"}\PY{l+s+si}{\PYZpc{}(q)s}\PY{l+s}{"}\PY{l+s}{></label> }
+\PY{l+s}{  <div style=}\PY{l+s}{"}\PY{l+s}{color: red}\PY{l+s}{"}\PY{l+s}{>}\PY{l+s+si}{\PYZpc{}(error)s}\PY{l+s}{</div>}
+\PY{l+s}{  </form>}
+\PY{l+s}{"""}
+\PY{k}{def} \PY{n+nf}{validation\PYZus{}function}\PY{p}{(}\PY{n}{q}\PY{p}{)}\PY{p}{:}
+  \PY{n}{reutrn} \PY{o}{.}\PY{o}{.}\PY{o}{.}
+
+\PY{k}{class} \PY{n+nc}{MainPage}\PY{p}{(}\PY{n}{webapp2}\PY{o}{.}\PY{n}{RequestHandler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{write\PYZus{}form}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{error}\PY{o}{=}\PY{l+s}{"}\PY{l+s}{"}\PY{p}{,}\PY{n}{q}\PY{o}{=}\PY{l+s}{"}\PY{l+s}{"}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{out}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{form} \PY{o}{\PYZpc{}} \PY{p}{\PYZob{}}\PY{l+s}{'}\PY{l+s}{error}\PY{l+s}{'}\PY{p}{:}\PY{n}{error}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{q}\PY{l+s}{'}\PY{p}{:}\PY{n}{q}\PY{p}{\PYZcb{}}\PY{p}{)}
+
+  \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{write\PYZus{}form}\PY{p}{(}\PY{p}{)}
+
+  \PY{k}{def} \PY{n+nf}{post}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+    \PY{n}{user\PYZus{}q} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{request}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{q}\PY{l+s}{'}\PY{p}{)}
+    \PY{n}{q}      \PY{o}{=} \PY{n}{validation\PYZus{}function}\PY{p}{(}\PY{n}{user\PYZus{}q}\PY{p}{)}
+  
+    \PY{k}{if} \PY{o+ow}{not} \PY{n}{q}\PY{p}{:}
+      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{write\PYZus{}form}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{Invalid form.}\PY{l+s}{"}\PY{p}{,}\PY{n}{user\PYZus{}q}\PY{p}{)}
+    \PY{k}{else}\PY{p}{:}
+      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{out}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{Thanks! That}\PY{l+s}{'}\PY{l+s}{s totally valid!}\PY{l+s}{"}\PY{p}{)}
+\end{Verbatim}

@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{string}
+
+\PY{n}{table} \PY{o}{=} \PY{n}{string}\PY{o}{.}\PY{n}{maketrans}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{ABC}\PY{l+s}{'}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{123}\PY{l+s}{'}\PY{p}{)}
+\PY{n}{f} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{A+B==C}\PY{l+s}{'}
+\PY{k}{print} \PY{n+nb}{eval}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{translate}\PY{p}{(}\PY{n}{table}\PY{p}{)}\PY{p}{)}
+\PY{c}{\PYZsh{}--> True}
+\end{Verbatim}

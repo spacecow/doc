@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PY{o}{.}\PY{o}{.}\PY{o}{.}
+  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{redirect}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/thanks}\PY{l+s}{'}\PY{p}{)}
+
+\PY{k}{class} \PY{n+nc}{ThanksHandler}\PY{p}{(}\PY{n}{webapp2}\PY{o}{.}\PY{n}{RequestHandler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{out}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{Thanks! That}\PY{l+s}{'}\PY{l+s}{s totally valid!}\PY{l+s}{"}\PY{p}{)}
+\PY{n}{app} \PY{o}{=} \PY{n}{webapp2}\PY{o}{.}\PY{n}{WSGIApplication}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/}\PY{l+s}{'}\PY{p}{,}\PY{n}{MainPage}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/thanks}\PY{l+s}{'}\PY{p}{,}\PY{n}{ThanksHandler}\PY{p}{)}\PY{p}{]}\PY{p}{,}\PY{n}{debug}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}

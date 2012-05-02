@@ -1,0 +1,65 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{ply.lex} \PY{k+kn}{as} \PY{n+nn}{lex}
+
+\PY{n}{tokens} \PY{o}{=} \PY{p}{(}\PY{l+s}{'}\PY{l+s}{LANGLE}\PY{l+s}{'}\PY{p}{,} \PY{c}{\PYZsh{}<}
+          \PY{l+s}{'}\PY{l+s}{LANGLESLASH}\PY{l+s}{'}\PY{p}{,} \PY{c}{\PYZsh{}</}
+          \PY{l+s}{'}\PY{l+s}{RANGLE}\PY{l+s}{'}\PY{p}{,} \PY{c}{\PYZsh{}>}
+          \PY{l+s}{'}\PY{l+s}{EQUAL}\PY{l+s}{'}\PY{p}{,} \PY{c}{\PYZsh{}=}
+          \PY{l+s}{'}\PY{l+s}{STRING}\PY{l+s}{'}\PY{p}{,} \PY{c}{\PYZsh{}"hello"}
+          \PY{l+s}{'}\PY{l+s}{WORD}\PY{l+s}{'}\PY{p}{)} \PY{c}{\PYZsh{}Welcome!}
+
+\PY{n}{t\PYZus{}ignore} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{ }\PY{l+s}{'} \PY{c}{\PYZsh{}shortcut for whitespace}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}newline}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{\PYZbs{}}\PY{l+s}{n}\PY{l+s}{'}
+  \PY{n}{token}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{lineno} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+  \PY{k}{pass}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}error}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+  \PY{k}{print} \PY{l+s}{"}\PY{l+s}{Lexer: unexpected character }\PY{l+s}{"} \PY{o}{+} \PY{n}{t}\PY{o}{.}\PY{n}{value}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+  \PY{n}{t}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{skip}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}LANGLESLASH}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{</}\PY{l+s}{'}
+  \PY{k}{return} \PY{n}{token}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}LANGLE}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{<}\PY{l+s}{'}
+  \PY{k}{return} \PY{n}{token}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}RANGLE}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{>}\PY{l+s}{'}
+  \PY{k}{return} \PY{n}{token}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}EQUAL}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{=}\PY{l+s}{'}
+  \PY{k}{return} \PY{n}{token}
+
+\PY{c}{\PYZsh{}def t\PYZus{}NUMBER(token):}
+\PY{c}{\PYZsh{}  r'-?\PYZbs{}d+(?:\PYZbs{}.\PYZbs{}d*)?'}
+\PY{c}{\PYZsh{}  token.value = float(token.value)}
+\PY{c}{\PYZsh{}  return token}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}STRING}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{"}\PY{l+s}{[\PYZca{}}\PY{l+s}{"}\PY{l+s}{]*}\PY{l+s}{"}\PY{l+s}{'}
+  \PY{n}{token}\PY{o}{.}\PY{n}{value} \PY{o}{=} \PY{n}{token}\PY{o}{.}\PY{n}{value}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{]}
+  \PY{k}{return} \PY{n}{token}
+
+\PY{c}{\PYZsh{}def t\PYZus{}WHITESPACE(token):}
+\PY{c}{\PYZsh{}  r' '}
+\PY{c}{\PYZsh{}  pass}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}WORD}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{[\PYZca{} <>}\PY{l+s}{\PYZbs{}}\PY{l+s}{n]+}\PY{l+s}{'}
+  \PY{k}{return} \PY{n}{token}
+
+\PY{n}{webpage} \PY{o}{=} \PY{l+s}{"""}\PY{l+s}{This is}
+\PY{l+s}{   <b>wepage!}
+\PY{l+s}{"""}
+\PY{n}{htmllexer} \PY{o}{=} \PY{n}{lex}\PY{o}{.}\PY{n}{lex}\PY{p}{(}\PY{p}{)}
+\PY{n}{htmllexer}\PY{o}{.}\PY{n}{input}\PY{p}{(}\PY{n}{webpage}\PY{p}{)}
+\PY{k}{while} \PY{n+nb+bp}{True}\PY{p}{:}
+  \PY{n}{tok} \PY{o}{=} \PY{n}{htmllexer}\PY{o}{.}\PY{n}{token}\PY{p}{(}\PY{p}{)}
+  \PY{k}{if} \PY{o+ow}{not} \PY{n}{tok}\PY{p}{:} \PY{k}{break}
+  \PY{k}{print} \PY{n}{tok}
+\end{Verbatim}

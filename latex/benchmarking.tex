@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{time}
+
+\PY{k}{def} \PY{n+nf}{timedcall}\PY{p}{(}\PY{n}{fn}\PY{p}{,}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{"}\PY{l+s}{Call function with args; return the time in seconds and result.}\PY{l+s}{"}
+  \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+  \PY{n}{result} \PY{o}{=} \PY{n}{fn}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+  \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+  \PY{k}{return} \PY{n}{t1}\PY{o}{-}\PY{n}{t0}\PY{p}{,}\PY{n}{result}
+
+\PY{k}{def} \PY{n+nf}{timedcalls}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{fn}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Call fn(*args) repeatedly: n times if n is an int, or up to}
+\PY{l+s+sd}{  n seconds if n is a float; return the min, avg and max time."""}
+  \PY{k}{if} \PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n+nb}{int}\PY{p}{)}\PY{p}{:}
+    \PY{n}{times} \PY{o}{=} \PY{p}{[}\PY{n}{timedcall}\PY{p}{(}\PY{n}{fn}\PY{p}{,}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{]}
+  \PY{k}{else}\PY{p}{:}
+    \PY{n}{times} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{k}{while} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{times}\PY{p}{)} \PY{o}{<} \PY{n}{n}\PY{p}{:}
+      \PY{n}{times}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{timedcall}\PY{p}{(}\PY{n}{fn}\PY{p}{,}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+  \PY{k}{return} \PY{n+nb}{min}\PY{p}{(}\PY{n}{times}\PY{p}{)}\PY{p}{,} \PY{n}{average}\PY{p}{(}\PY{n}{times}\PY{p}{)}\PY{p}{,} \PY{n+nb}{max}\PY{p}{(}\PY{n}{times}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{average}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{"}\PY{l+s}{Return the average (arithmetic mean) of a sequence of numbers.}\PY{l+s}{"}
+  \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{loop}\PY{p}{(}\PY{n}{stop}\PY{p}{)}\PY{p}{:} 
+  \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{stop}\PY{p}{)}\PY{p}{:} \PY{k}{pass}
+
+\PY{k}{print} \PY{n}{timedcalls}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{loop}\PY{p}{,}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{6}\PY{p}{)}
+\PY{c}{\PYZsh{}--> (0.02, 0.028, 0.04)}
+
+\PY{k}{print} \PY{n}{timedcalls}\PY{p}{(}\PY{l+m+mf}{10.}\PY{p}{,} \PY{n}{loop}\PY{p}{,}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{6}\PY{p}{)}
+\PY{c}{\PYZsh{}--> (0.02, 0.027, 0.04) takes 10s}
+\end{Verbatim}

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{ints}\PY{p}{(}\PY{n}{start}\PY{p}{,}\PY{n}{end}\PY{o}{=}\PY{n+nb+bp}{None}\PY{p}{)}\PY{p}{:}
+  \PY{n}{i} \PY{o}{=} \PY{n}{start}
+  \PY{k}{while} \PY{n}{i} \PY{o}{<}\PY{o}{=} \PY{n}{end} \PY{o+ow}{or} \PY{n}{end} \PY{o+ow}{is} \PY{n+nb+bp}{None}\PY{p}{:}
+    \PY{k}{yield} \PY{n}{i}
+    \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+
+\PY{n}{L} \PY{o}{=} \PY{n}{ints}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{6}\PY{p}{)}
+\PY{k}{print} \PY{n}{L}
+\PY{c}{\PYZsh{}--> <generator object ints at 0x7fe4f0613960>}
+
+\PY{k}{print} \PY{n+nb}{next}\PY{p}{(}\PY{n}{L}\PY{p}{)}
+\PY{c}{\PYZsh{}--> 0}
+\end{Verbatim}

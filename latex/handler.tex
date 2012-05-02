@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{class} \PY{n+nc}{TestHandler}\PY{p}{(}\PY{n}{webapp2}\PY{o}{.}\PY{n}{RequestHandler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+    \PY{n}{q} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{request}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{q}\PY{l+s}{"}\PY{p}{)} \PY{c}{\PYZsh{}get parameter q}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{out}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{q}\PY{p}{)}
+
+\PY{n}{app} \PY{o}{=} \PY{n}{webapp2}\PY{o}{.}\PY{n}{WSGIApplication}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/}\PY{l+s}{'}\PY{p}{,}\PY{n}{MainPage}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/testform}\PY{l+s}{'}\PY{p}{,}\PY{n}{TestHandler}\PY{p}{)}\PY{p}{]}\PY{p}{,}\PY{n}{debug}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}

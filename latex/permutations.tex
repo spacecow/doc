@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{itertools}
+
+\PY{c}{\PYZsh{}In how many ways can five numbers be ordered?}
+\PY{n}{orderings} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{itertools}\PY{o}{.}\PY{n}{permutations}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{k}{print} \PY{n+nb}{len}\PY{p}{(}\PY{n}{orderings}\PY{p}{)}
+\PY{c}{\PYZsh{}--> 120}
+
+\PY{c}{\PYZsh{}In how many ways can ten numbers be ordered in groups of three?}
+\PY{n}{orderings} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{itertools}\PY{o}{.}\PY{n}{permutations}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{1234567890}\PY{l+s}{'}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\PY{k}{print} \PY{n+nb}{len}\PY{p}{(}\PY{n}{orderings}\PY{p}{)}
+\PY{c}{\PYZsh{}--> 720}
+\end{Verbatim}

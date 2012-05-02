@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{states} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{htmlcomment}\PY{l+s}{'}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{exclusive}\PY{l+s}{'}\PY{p}{)}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}htmlcomment}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{<!--}\PY{l+s}{'}
+  \PY{n}{token}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{begin}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{htmlcomment}\PY{l+s}{'}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}htmlcomment\PYZus{}end}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{-->}\PY{l+s}{'}
+  \PY{n}{token}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{lineno} \PY{o}{+}\PY{o}{=} \PY{n}{token}\PY{o}{.}\PY{n}{value}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{'}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{'}\PY{p}{)}
+  \PY{n}{token}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{begin}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{INITIAL}\PY{l+s}{'}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}htmlcomment\PYZus{}error}\PY{p}{(}\PY{n}{token}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{"}\PY{l+s}{Gathers up all of the text into one big value so one can count the new lines later.}\PY{l+s}{"}
+  \PY{n}{token}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{skip}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)} 
+\end{Verbatim}

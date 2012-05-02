@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{items}\PY{p}{:} \PY{k}{print} \PY{n}{x}
+
+\PY{c}{\PYZsh{}python does the conversion}
+\PY{n}{it} \PY{o}{=} \PY{n+nb}{iter}\PY{p}{(}\PY{n}{items}\PY{p}{)}
+\PY{k}{try}\PY{p}{:}
+  \PY{k}{while} \PY{n+nb+bp}{True}\PY{p}{:}
+    \PY{n}{x} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n}{it}\PY{p}{)}
+    \PY{k}{print} \PY{n}{x}
+\PY{k}{except} \PY{n+ne}{StopIteration}\PY{p}{:}
+  \PY{k}{pass} 
+\end{Verbatim}

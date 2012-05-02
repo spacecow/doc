@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{sq}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:} \PY{k}{print} \PY{l+s}{'}\PY{l+s}{sq called}\PY{l+s}{'}\PY{p}{,} \PY{n}{x}\PY{p}{;} \PY{k}{return} \PY{n}{x}\PY{o}{*}\PY{n}{x}
+\PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{sq}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}
+\PY{n+nb}{next}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+\PY{c}{\PYZsh{}--> sq called 0}
+\PY{n+nb}{next}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+\PY{c}{\PYZsh{}--> sq called 2}
+\PY{n+nb}{next}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+\PY{c}{\PYZsh{}--> sq called 4}
+\PY{n+nb}{next}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+\PY{c}{\PYZsh{}--> sq called 6}
+\PY{n+nb}{next}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+\PY{c}{\PYZsh{}--> sq called 8}
+\PY{n+nb}{next}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+\PY{c}{\PYZsh{}..> ...}
+\PY{c}{\PYZsh{}--> StopIteration}
+
+\PY{c}{\PYZsh{}To not bother dealing with the StopIteration, use a for-loop}
+\PY{k}{for} \PY{n}{x2} \PY{o+ow}{in} \PY{p}{(}\PY{n}{sq}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:} \PY{k}{pass}
+\PY{c}{\PYZsh{}--> sq called 0}
+\PY{c}{\PYZsh{}--> sq called 2}
+\PY{c}{\PYZsh{}--> sq called 4}
+\PY{c}{\PYZsh{}--> sq called 6}
+\PY{c}{\PYZsh{}--> sq called 8}
+
+\PY{k}{print} \PY{n+nb}{list}\PY{p}{(}\PY{p}{(}\PY{n}{sq}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+\PY{c}{\PYZsh{}--> sq called 0}
+\PY{c}{\PYZsh{}--> sq called 2}
+\PY{c}{\PYZsh{}--> sq called 4}
+\PY{c}{\PYZsh{}--> sq called 6}
+\PY{c}{\PYZsh{}--> sq called 8}
+\PY{c}{\PYZsh{}--> [0, 4, 16, 36, 64]}
+\end{Verbatim}

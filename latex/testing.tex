@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{time}
+
+\PY{n}{examples} \PY{o}{=} \PY{l+s}{"""}\PY{l+s}{TWO + TWO == FOURi}
+\PY{l+s}{A**2 + B**2 == C**2}\PY{l+s}{"""}\PY{o}{.}\PY{n}{splitlines}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{test}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+  \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}
+  \PY{k}{for} \PY{n}{example} \PY{o+ow}{in} \PY{n}{examples}\PY{p}{:}
+    \PY{k}{print}\PY{p}{;} \PY{k}{print} \PY{l+m+mi}{13}\PY{o}{*}\PY{l+s}{'}\PY{l+s}{ }\PY{l+s}{'}\PY{p}{,}\PY{n}{example}
+    \PY{k}{print} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}6.4f}\PY{l+s}{ sec:   }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ }\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{n}{timedcall}\PY{p}{(}\PY{n}{solve}\PY{p}{,} \PY{n}{example}\PY{p}{)}
+  \PY{k}{print} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}6.4f}\PY{l+s}{ tot.}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{time}\PY{o}{.}\PY{n}{clock}\PY{p}{(}\PY{p}{)}\PY{o}{-}\PY{n}{t0}\PY{p}{)}
+
+\PY{n}{test}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
