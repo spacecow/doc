@@ -1,0 +1,56 @@
+def n_ary(f):
+	"""Given binary function f(x,y), return an n_ary function such that
+	f(x,y,z) = f(x,f(y,z)), etc. Also allow f(x) = x."""
+	def n_ary_f(x,*args):
+		return x if not args else f(x,n_ary_f(*args))
+	return n_ary_f
+
+Take a function we have defined and redefine it.
+
+def seq(x,y): return ('seq',x,y)
+seq = n_ary(seq)
+
+This pattern is so common in python, that there is a special notation for it, called the decorator notation.
+
+Decorator
+
+@n_ary
+def seq(x,y): return ('seq',x,y)
+
+But there is one problem with how we have specfied this decorator. In an interactive session, asking for help on seq, it is called n_ary_f. To fix this:
+
+from functors import update_wrapper
+def n_ary(f):
+	"""Given binary function f(x,y), return an n_ary function such that
+	f(x,y,z) = f(x,f(y,z)), etc. Also allow f(x) = x."""
+	def n_ary_f(x,*args):
+		return x if not args else f(x,n_ary_f(*args))
+	update_wrapper(n_ary_f,f)
+	return n_ary_f
+
+We have, though, introduced some repetition now. We always want to update the wrapper for every decorator.
+
+from functors import update_wrapper
+
+def decorator(d):
+	"Make function d a decorator: d wraps a function fn."
+	def _d(fn):
+		return update_wrapper(d(fn),fn) #update wrapper for decorated function
+	update_wrapper(_d,d) #update wrapper for decorator
+	return _d
+
+@decorator
+def n_ary(f):
+	"""Given binary function f(x,y), return an n_ary function such that
+	f(x,y,z) = f(x,f(y,z)), etc. Also allow f(x) = x."""
+	def n_ary_f(x,*args):
+		return x if not args else f(x,n_ary_f(*args))
+	return n_ary_f
+
+or
+
+def decorator(d):
+	"Make function d a decorator: d wraps a function fn. @author Darius Bacon"
+	return lambda fn: update_wrapper(d(fn),fn) #update wrapper for decorated function
+
+decorator = decorator(decorator) #update wrapper for decorator
