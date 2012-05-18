@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{odds\PYZus{}only}\PY{p}{(}\PY{n}{ns}\PY{p}{)}\PY{p}{:}
+  \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{ns}\PY{p}{:}
+    \PY{k}{if} \PY{n}{n}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:} \PY{k}{yield} \PY{n}{n}
+\PY{k}{print} \PY{p}{[}\PY{n}{x} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{odds\PYZus{}only}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}\PY{p}{]} \PY{c}{\PYZsh{}--> [1, 3, 5]}
+
+\PY{c}{\PYZsh{}list comprehension with a guard or a predicate}
+\PY{k}{print} \PY{p}{[}\PY{n}{x} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{]} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]} \PY{c}{\PYZsh{}--> [1, 3, 5]}
+\end{Verbatim}

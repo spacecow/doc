@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{decorators} \PY{k+kn}{import} \PY{n}{decorator}
+\PY{n+nd}{@decorator}
+\PY{k}{def} \PY{n+nf}{memo}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Decorator that caches the return value for each call to f(args).}
+\PY{l+s+sd}{  Then when called again with same args, we can just look it up."""}
+  \PY{n}{cache} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+  \PY{k}{def} \PY{n+nf}{\PYZus{}f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+    \PY{k}{try}\PY{p}{:}
+      \PY{k}{return} \PY{n}{cache}\PY{p}{[}\PY{n}{args}\PY{p}{]}
+    \PY{k}{except} \PY{n+ne}{KeyError}\PY{p}{:}
+      \PY{n}{cache}\PY{p}{[}\PY{n}{args}\PY{p}{]} \PY{o}{=} \PY{n}{result} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+      \PY{k}{return} \PY{n}{result}
+    \PY{k}{except} \PY{n+ne}{TypeError}\PY{p}{:}
+      \PY{c}{\PYZsh{} some element of args can't be a dict key (list,dic - mutable)}
+      \PY{k}{return} \PY{n}{f}\PY{p}{(}\PY{n}{args}\PY{p}{)}
+  \PY{k}{return} \PY{n}{\PYZus{}f}
+\end{Verbatim}

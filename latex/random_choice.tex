@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{string}
+\PY{k+kn}{import} \PY{n+nn}{random}
+\PY{k+kn}{import} \PY{n+nn}{doctest}
+\PY{k}{def} \PY{n+nf}{make\PYZus{}salt}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""5 random characters}
+\PY{l+s+sd}{  >>> len(make\PYZus{}salt())}
+\PY{l+s+sd}{  5}
+\PY{l+s+sd}{  """}
+  \PY{k}{return} \PY{l+s}{"}\PY{l+s}{"}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{letters}\PY{p}{)} \PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{k}{print} \PY{n}{doctest}\PY{o}{.}\PY{n}{testmod}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}

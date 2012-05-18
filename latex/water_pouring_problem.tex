@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{doctest}
+
+\PY{k}{def} \PY{n+nf}{pour}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{p}{\PYZob{}}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{p}{)} \PY{k}{if} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{o}{<}\PY{o}{=}\PY{n}{Y} \PY{k}{else} \PY{p}{(}\PY{n}{x}\PY{o}{-}\PY{p}{(}\PY{n}{Y}\PY{o}{-}\PY{n}{y}\PY{p}{)}\PY{p}{,}\PY{n}{y}\PY{o}{+}\PY{p}{(}\PY{n}{Y}\PY{o}{-}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{X->Y}\PY{l+s}{'}\PY{p}{,}
+                           \PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)} \PY{k}{if} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{o}{<}\PY{o}{=}\PY{n}{X} \PY{k}{else} \PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{p}{(}\PY{n}{X}\PY{o}{-}\PY{n}{x}\PY{p}{)}\PY{p}{,}\PY{n}{y}\PY{o}{-}\PY{p}{(}\PY{n}{X}\PY{o}{-}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{Y->X}\PY{l+s}{'}\PY{p}{\PYZcb{}}
+\PY{k}{def} \PY{n+nf}{empty}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{p}{\PYZob{}}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{empty X}\PY{l+s}{'}\PY{p}{,}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{empty Y}\PY{l+s}{'}\PY{p}{\PYZcb{}}
+\PY{k}{def} \PY{n+nf}{fill}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{p}{\PYZob{}}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{fill X}\PY{l+s}{'}\PY{p}{,}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{fill Y}\PY{l+s}{'}\PY{p}{\PYZcb{}}
+
+\PY{k}{def} \PY{n+nf}{successors}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Return a dict of \PYZob{}state:action\PYZcb{} paris describing what can be reached}
+\PY{l+s+sd}{  from the (x,y) state, and how."""}
+  \PY{k}{assert} \PY{n}{x}\PY{o}{<}\PY{o}{=}\PY{n}{X} \PY{o+ow}{and} \PY{n}{y}\PY{o}{<}\PY{o}{=}\PY{n}{Y}
+  \PY{k}{return} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{fill}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n}{empty}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{n}{pour}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{pour\PYZus{}problem}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{,}\PY{n}{goal}\PY{p}{,}\PY{n}{start}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""X and Y are the capacity of the two glasses; (x,y) is current fill levels}
+\PY{l+s+sd}{  and represents a state. The goal is a level that can be in either glass.}
+\PY{l+s+sd}{  Start at the start state and follow successors until we reach the goal.}
+\PY{l+s+sd}{  Keep track of frontier and previously explored; fail when no frontier."""}
+  \PY{k}{if} \PY{n}{goal} \PY{o+ow}{in} \PY{n}{start}\PY{p}{:} \PY{k}{return} \PY{p}{[}\PY{n}{start}\PY{p}{]}
+  \PY{n}{explored} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+  \PY{n}{frontier} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{start}\PY{p}{]}\PY{p}{]}
+  \PY{k}{while} \PY{n}{frontier}\PY{p}{:}
+    \PY{n}{path} \PY{o}{=} \PY{n}{frontier}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+    \PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{k}{for} \PY{p}{(}\PY{n}{state}\PY{p}{,}\PY{n}{action}\PY{p}{)} \PY{o+ow}{in} \PY{n}{successors}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+      \PY{k}{if} \PY{n}{state} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{explored}\PY{p}{:}
+        \PY{n}{explored}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{state}\PY{p}{)}
+        \PY{n}{npath} \PY{o}{=} \PY{n}{path} \PY{o}{+} \PY{p}{[}\PY{n}{action}\PY{p}{,}\PY{n}{state}\PY{p}{]} 
+        \PY{k}{if} \PY{n}{goal} \PY{o+ow}{in} \PY{n}{state}\PY{p}{:} \PY{k}{return} \PY{n}{npath}
+        \PY{k}{else}\PY{p}{:} \PY{n}{frontier}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{npath}\PY{p}{)}
+
+\PY{k}{class} \PY{n+nc}{Test}\PY{p}{:} \PY{l+s}{"""}
+\PY{l+s}{>>> pour(1,1,9,4)}
+\PY{l+s}{\PYZob{}(2, 0): }\PY{l+s}{'}\PY{l+s}{Y->X}\PY{l+s}{'}\PY{l+s}{, (0, 2): }\PY{l+s}{'}\PY{l+s}{X->Y}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+\PY{l+s}{>>> pour(8,3,9,4)}
+\PY{l+s}{\PYZob{}(7, 4): }\PY{l+s}{'}\PY{l+s}{X->Y}\PY{l+s}{'}\PY{l+s}{, (9, 2): }\PY{l+s}{'}\PY{l+s}{Y->X}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+
+\PY{l+s}{>>> empty(2,3,9,4)}
+\PY{l+s}{\PYZob{}(2, 0): }\PY{l+s}{'}\PY{l+s}{empty Y}\PY{l+s}{'}\PY{l+s}{, (0, 3): }\PY{l+s}{'}\PY{l+s}{empty X}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+
+\PY{l+s}{>>> fill(2,3,9,4)}
+\PY{l+s}{\PYZob{}(9, 3): }\PY{l+s}{'}\PY{l+s}{fill X}\PY{l+s}{'}\PY{l+s}{, (2, 4): }\PY{l+s}{'}\PY{l+s}{fill Y}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+
+\PY{l+s}{>>> successors(2,3,9,4)}
+\PY{l+s}{\PYZob{}(9, 3): }\PY{l+s}{'}\PY{l+s}{fill X}\PY{l+s}{'}\PY{l+s}{, (1, 4): }\PY{l+s}{'}\PY{l+s}{X->Y}\PY{l+s}{'}\PY{l+s}{, (2, 0): }\PY{l+s}{'}\PY{l+s}{empty Y}\PY{l+s}{'}\PY{l+s}{, (5, 0): }\PY{l+s}{'}\PY{l+s}{Y->X}\PY{l+s}{'}\PY{l+s}{, (0, 3): }\PY{l+s}{'}\PY{l+s}{empty X}\PY{l+s}{'}\PY{l+s}{, (2, 4): }\PY{l+s}{'}\PY{l+s}{fill Y}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+\PY{l+s}{"""}
+\PY{k}{print} \PY{n}{doctest}\PY{o}{.}\PY{n}{testmod}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{}--> TestResults(failed=0, attempted=5)}
+
+\PY{k}{print} \PY{n}{pour\PYZus{}problem}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}
+\PY{c}{\PYZsh{}--> [(0, 0), 'fill X', (9, 0), 'X->Y', (5, 4), 'empty Y', (5, 0), 'X->Y', }
+\PY{c}{\PYZsh{}-->  (1, 4), 'empty Y', (1, 0), 'X->Y', (0, 1), 'fill X', (9, 1), 'X->Y', (6, 4)]}
+\end{Verbatim}

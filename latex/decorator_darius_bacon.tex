@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{functools} \PY{k+kn}{import} \PY{n}{update\PYZus{}wrapper}
+\PY{k}{def} \PY{n+nf}{decorator}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{"}\PY{l+s}{Make function d a decorator: d wraps a function fn.}\PY{l+s}{"}
+  \PY{k}{return} \PY{k}{lambda} \PY{n}{fn}\PY{p}{:} \PY{n}{update\PYZus{}wrapper}\PY{p}{(}\PY{n}{d}\PY{p}{(}\PY{n}{fn}\PY{p}{)}\PY{p}{,}\PY{n}{fn}\PY{p}{)}
+\PY{n}{decorator} \PY{o}{=} \PY{n}{decorator}\PY{p}{(}\PY{n}{decorator}\PY{p}{)} 
+\end{Verbatim}

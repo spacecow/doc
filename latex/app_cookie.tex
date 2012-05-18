@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{os}
+\PY{k+kn}{import} \PY{n+nn}{webapp2}
+\PY{k+kn}{import} \PY{n+nn}{jinja2}
+
+\PY{k+kn}{from} \PY{n+nn}{google.appengine.ext} \PY{k+kn}{import} \PY{n}{db}
+
+\PY{n}{template\PYZus{}dir} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{dirname}\PY{p}{(}\PY{n}{\PYZus{}\PYZus{}file\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{templates}\PY{l+s}{'}\PY{p}{)}
+\PY{n}{jinja\PYZus{}env} \PY{o}{=} \PY{n}{jinja2}\PY{o}{.}\PY{n}{Environment}\PY{p}{(}\PY{n}{loader} \PY{o}{=} \PY{n}{jinja2}\PY{o}{.}\PY{n}{FileSystemLoader}\PY{p}{(}\PY{n}{template\PYZus{}dir}\PY{p}{)}\PY{p}{,} \PY{n}{autoescape} \PY{o}{=} \PY{n+nb+bp}{True}\PY{p}{)}
+
+\PY{c}{\PYZsh{}-----------------------------------------}
+\PY{c}{\PYZsh{}import hashlib}
+\PY{k+kn}{import} \PY{n+nn}{hmac}
+\PY{n}{SECRET} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{secret}\PY{l+s}{'}
+
+\PY{k}{def} \PY{n+nf}{check\PYZus{}secure\PYZus{}val}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{:}
+  \PY{n}{val} \PY{o}{=} \PY{n}{h}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{|}\PY{l+s}{'}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+  \PY{k}{if} \PY{n}{h} \PY{o}{==} \PY{n}{make\PYZus{}secure\PYZus{}val}\PY{p}{(}\PY{n}{val}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{val}
+
+\PY{k}{def} \PY{n+nf}{hash\PYZus{}str}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{:}
+  \PY{c}{\PYZsh{}return hashlib.md5(s).hexdigest()}
+  \PY{k}{return} \PY{n}{hmac}\PY{o}{.}\PY{n}{new}\PY{p}{(}\PY{n}{SECRET}\PY{p}{,}\PY{n}{s}\PY{p}{)}\PY{o}{.}\PY{n}{hexdigest}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{make\PYZus{}secure\PYZus{}val}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{:}
+  \PY{k}{return} \PY{l+s}{"}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{|}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{"} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{s}\PY{p}{,}\PY{n}{hash\PYZus{}str}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+\PY{c}{\PYZsh{}-----------------------------------------}
+
+\PY{k}{class} \PY{n+nc}{Handler}\PY{p}{(}\PY{n}{webapp2}\PY{o}{.}\PY{n}{RequestHandler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{o}{*}\PY{n}{a}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{out}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{o}{*}\PY{n}{a}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}
+
+  \PY{k}{def} \PY{n+nf}{render\PYZus{}str}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{params}\PY{p}{)}\PY{p}{:}
+    \PY{n}{t} \PY{o}{=} \PY{n}{jinja\PYZus{}env}\PY{o}{.}\PY{n}{get\PYZus{}template}\PY{p}{(}\PY{n}{template}\PY{p}{)}
+    \PY{k}{return} \PY{n}{t}\PY{o}{.}\PY{n}{render}\PY{p}{(}\PY{n}{params}\PY{p}{)}
+
+  \PY{k}{def} \PY{n+nf}{render}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{render\PYZus{}str}\PY{p}{(}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{class} \PY{n+nc}{MainPage}\PY{p}{(}\PY{n}{Handler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{headers}\PY{p}{[}\PY{l+s}{'}\PY{l+s}{Content-Type}\PY{l+s}{'}\PY{p}{]} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{text/plain}\PY{l+s}{'}
+    \PY{n}{visits} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{n}{visit\PYZus{}cookie\PYZus{}str} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{request}\PY{o}{.}\PY{n}{cookies}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{visits}\PY{l+s}{'}\PY{p}{)}
+    \PY{k}{if} \PY{n}{visit\PYZus{}cookie\PYZus{}str}\PY{p}{:}
+      \PY{n}{cookie\PYZus{}val} \PY{o}{=} \PY{n}{check\PYZus{}secure\PYZus{}val}\PY{p}{(}\PY{n}{visit\PYZus{}cookie\PYZus{}str}\PY{p}{)}
+      \PY{k}{if} \PY{n}{cookie\PYZus{}val}\PY{p}{:}
+        \PY{n}{visits} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{cookie\PYZus{}val}\PY{p}{)}
+    \PY{n}{visits} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+    \PY{n}{new\PYZus{}cookie\PYZus{}val} \PY{o}{=} \PY{n}{make\PYZus{}secure\PYZus{}val}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{visits}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{headers}\PY{o}{.}\PY{n}{add\PYZus{}header}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{Set-Cookie}\PY{l+s}{'}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{visits=}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{n}{new\PYZus{}cookie\PYZus{}val}\PY{p}{)}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{You}\PY{l+s+se}{\PYZbs{}'}\PY{l+s}{ve been here }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ times}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{n}{visits}\PY{p}{)}
+    
+
+\PY{n}{app} \PY{o}{=} \PY{n}{webapp2}\PY{o}{.}\PY{n}{WSGIApplication}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/}\PY{l+s}{'}\PY{p}{,}\PY{n}{MainPage}\PY{p}{)}\PY{p}{]}\PY{p}{,}\PY{n}{debug}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}

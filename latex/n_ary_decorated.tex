@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{functools} \PY{k+kn}{import} \PY{n}{update\PYZus{}wrapper}
+\PY{k}{def} \PY{n+nf}{decorator}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{"}\PY{l+s}{Make function d a decorator: d wraps a function fn.}\PY{l+s}{"}
+  \PY{k}{def} \PY{n+nf}{\PYZus{}d}\PY{p}{(}\PY{n}{fn}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{update\PYZus{}wrapper}\PY{p}{(}\PY{n}{d}\PY{p}{(}\PY{n}{fn}\PY{p}{)}\PY{p}{,}\PY{n}{fn}\PY{p}{)} \PY{c}{\PYZsh{}update wrapper for decorated function}
+  \PY{n}{update\PYZus{}wrapper}\PY{p}{(}\PY{n}{\PYZus{}d}\PY{p}{,}\PY{n}{d}\PY{p}{)} \PY{c}{\PYZsh{}update wrapper for decorator}
+  \PY{k}{return} \PY{n}{\PYZus{}d}
+
+\PY{n+nd}{@decorator}
+\PY{k}{def} \PY{n+nf}{n\PYZus{}ary}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Given binary function f(x,y), return an n\PYZus{}ary function such that}
+\PY{l+s+sd}{  f(x,y,z) = f(x,f(y,z)), etc. Also allow f(x) = x."""}
+  \PY{k}{def} \PY{n+nf}{n\PYZus{}ary\PYZus{}f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{x} \PY{k}{if} \PY{o+ow}{not} \PY{n}{args} \PY{k}{else} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{n\PYZus{}ary\PYZus{}f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{)}
+  \PY{k}{return} \PY{n}{n\PYZus{}ary\PYZus{}f}
+\end{Verbatim}

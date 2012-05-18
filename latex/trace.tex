@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{decorators} \PY{k+kn}{import} \PY{n}{decorator}
+\PY{n+nd}{@decorator}
+\PY{k}{def} \PY{n+nf}{trace}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{n}{indent} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{  }\PY{l+s}{'}
+  \PY{k}{def} \PY{n+nf}{\PYZus{}f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+    \PY{n}{signature} \PY{o}{=} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{(}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{)}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{, }\PY{l+s}{'}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{repr}\PY{p}{,}\PY{n}{args}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+    \PY{k}{print} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{--> }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{trace}\PY{o}{.}\PY{n}{level}\PY{o}{*}\PY{n}{indent}\PY{p}{,}\PY{n}{signature}\PY{p}{)}
+    \PY{n}{trace}\PY{o}{.}\PY{n}{level} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{try}\PY{p}{:}
+      \PY{n}{result} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+      \PY{k}{print} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{<-- }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{ == }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{p}{(}\PY{n}{trace}\PY{o}{.}\PY{n}{level}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{indent}\PY{p}{,}\PY{n}{signature}\PY{p}{,}\PY{n}{result}\PY{p}{)}
+    \PY{k}{finally}\PY{p}{:}
+      \PY{n}{trace}\PY{o}{.}\PY{n}{level} \PY{o}{-}\PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{return} \PY{n}{result}
+  \PY{n}{trace}\PY{o}{.}\PY{n}{level} \PY{o}{=} \PY{l+m+mi}{0}
+  \PY{k}{return} \PY{n}{\PYZus{}f}
+
+\PY{n+nd}{@trace}
+\PY{k}{def} \PY{n+nf}{fib}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{n}\PY{o}{<}\PY{o}{=}\PY{l+m+mi}{1} \PY{k}{else} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{+}\PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{o}{-}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{fib}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{c}{\PYZsh{} --> --> fib(3)}
+\PY{c}{\PYZsh{} -->   --> fib(2)}
+\PY{c}{\PYZsh{} -->     --> fib(1)}
+\PY{c}{\PYZsh{} -->     <-- fib(1) == 1}
+\PY{c}{\PYZsh{} -->     --> fib(0)}
+\PY{c}{\PYZsh{} -->     <-- fib(0) == 1}
+\PY{c}{\PYZsh{} -->   <-- fib(2) == 2}
+\PY{c}{\PYZsh{} -->   --> fib(1)}
+\PY{c}{\PYZsh{} -->   <-- fib(1) == 1}
+\PY{c}{\PYZsh{} --> <-- fib(3) == 3}
+\end{Verbatim}

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{collections} \PY{k+kn}{import} \PY{n}{defaultdict}
+\PY{n}{cache} \PY{o}{=} \PY{n}{defaultdict}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+\PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{l+s}{'}\PY{l+s}{abcd}\PY{l+s}{'}\PY{p}{:}
+  \PY{n}{cache}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\PY{k}{print} \PY{n}{cache} \PY{c}{\PYZsh{}--> defaultdict(<type 'int'>, \PYZob{}'a': 1, 'c': 1, 'b': 1, 'd': 1\PYZcb{})}
+\end{Verbatim}

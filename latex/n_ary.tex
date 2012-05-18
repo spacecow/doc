@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{n\PYZus{}ary}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Given binary function f(x, y), return an n\PYZus{}ary function such}
+\PY{l+s+sd}{  that f(x, y, z) = f(x, f(y,z)), etc. Also allow f(x) = x."""}
+  \PY{k}{def} \PY{n+nf}{n\PYZus{}ary\PYZus{}f}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+      \PY{k}{return} \PY{n}{x} \PY{k}{if} \PY{o+ow}{not} \PY{n}{args} \PY{k}{else} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{n\PYZus{}ary\PYZus{}f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{)}
+  \PY{k}{return} \PY{n}{n\PYZus{}ary\PYZus{}f}
+
+\PY{k}{def} \PY{n+nf}{seq}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{:} \PY{k}{return}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{seq}\PY{l+s}{'}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+\PY{n}{seq} \PY{o}{=} \PY{n}{n\PYZus{}ary}\PY{p}{(}\PY{n}{seq}\PY{p}{)}
+\end{Verbatim}

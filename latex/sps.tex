@@ -1,0 +1,70 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{shortest\PYZus{}path\PYZus{}search}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{successors}\PY{p}{,} \PY{n}{is\PYZus{}goal}\PY{p}{)}\PY{p}{:} 
+  \PY{l+s+sd}{"""Find the shortest path from start state to a state}
+\PY{l+s+sd}{  such that is\PYZus{}goal(state) is true."""}
+  \PY{k}{if} \PY{n}{is\PYZus{}goal}\PY{p}{(}\PY{n}{start}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{p}{[}\PY{n}{start}\PY{p}{]}
+  \PY{n}{explored} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+  \PY{n}{frontier} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{start}\PY{p}{]}\PY{p}{]}
+  \PY{k}{while} \PY{n}{frontier}\PY{p}{:}
+    \PY{n}{path} \PY{o}{=} \PY{n}{frontier}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+    \PY{n}{s} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{k}{for} \PY{p}{(}\PY{n}{state}\PY{p}{,}\PY{n}{action}\PY{p}{)} \PY{o+ow}{in} \PY{n}{successors}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+      \PY{k}{if} \PY{n}{state} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{explored}\PY{p}{:}
+        \PY{n}{explored}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{state}\PY{p}{)}
+        \PY{n}{npath} \PY{o}{=} \PY{n}{path} \PY{o}{+} \PY{p}{[}\PY{n}{action}\PY{p}{,}\PY{n}{state}\PY{p}{]}
+        \PY{k}{if} \PY{n}{is\PYZus{}goal}\PY{p}{(}\PY{n}{state}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{npath}
+        \PY{k}{else}\PY{p}{:} \PY{n}{frontier}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{npath}\PY{p}{)}
+  \PY{k}{return} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{mc\PYZus{}problem}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{goal}\PY{o}{=}\PY{n+nb+bp}{None}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Solve the missionaries and cannibals problem.}
+\PY{l+s+sd}{  State is 6 ints: (M1, C1, B1, M2, C2, B2) on the start (1) and other (2) side.}
+\PY{l+s+sd}{  Find a path that goes from the initial state to the goal state (which, if}
+\PY{l+s+sd}{  not specified, is the state with no people or boats on the start side."""}
+  \PY{k}{if} \PY{n}{goal} \PY{o+ow}{is} \PY{n+nb+bp}{None}\PY{p}{:}
+    \PY{k}{def} \PY{n+nf}{goal\PYZus{}fn}\PY{p}{(}\PY{n}{state}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{state}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}     
+  \PY{k}{else}\PY{p}{:}
+    \PY{k}{def} \PY{n+nf}{goal\PYZus{}fn}\PY{p}{(}\PY{n}{state}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{state} \PY{o}{==} \PY{n}{goal}
+  \PY{k}{return} \PY{n}{shortest\PYZus{}path\PYZus{}search}\PY{p}{(}\PY{n}{start}\PY{p}{,}\PY{n}{csuccessors}\PY{p}{,}\PY{n}{goal\PYZus{}fn}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{csuccessors}\PY{p}{(}\PY{n}{state}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Find successors (including ones that result in dining) to this state.}
+\PY{l+s+sd}{  But a state where cannibals can dine has no successors."""}
+  \PY{n}{M1}\PY{p}{,} \PY{n}{C1}\PY{p}{,} \PY{n}{B1}\PY{p}{,} \PY{n}{M2}\PY{p}{,} \PY{n}{C2}\PY{p}{,} \PY{n}{B2} \PY{o}{=} \PY{n}{state}
+  \PY{c}{\PYZsh{}\PYZsh{} Check for state with no successors}
+  \PY{k}{if} \PY{n}{C1} \PY{o}{>} \PY{n}{M1} \PY{o}{>} \PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{C2} \PY{o}{>} \PY{n}{M2} \PY{o}{>} \PY{l+m+mi}{0}\PY{p}{:} \PY{k}{return} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+  \PY{k}{if} \PY{n}{B1} \PY{o}{>} \PY{l+m+mi}{0}\PY{p}{:} \PY{n}{items} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{n}{sub}\PY{p}{(}\PY{n}{state}\PY{p}{,}\PY{n}{delta}\PY{p}{)}\PY{p}{,} \PY{n}{a} \PY{o}{+} \PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{p}{)} \PY{k}{for} \PY{n}{delta}\PY{p}{,}\PY{n}{a} \PY{o+ow}{in} \PY{n}{deltas}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+  \PY{k}{if} \PY{n}{B2} \PY{o}{>} \PY{l+m+mi}{0}\PY{p}{:} \PY{n}{items} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{n}{add}\PY{p}{(}\PY{n}{state}\PY{p}{,}\PY{n}{delta}\PY{p}{)}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'} \PY{o}{+} \PY{n}{a}\PY{p}{)} \PY{k}{for} \PY{n}{delta}\PY{p}{,}\PY{n}{a} \PY{o+ow}{in} \PY{n}{deltas}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+  \PY{k}{return} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{items}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{add}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{n}{y} \PY{k}{for} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{)}
+\PY{k}{def} \PY{n+nf}{sub}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{x}\PY{o}{-}\PY{n}{y} \PY{k}{for} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{Y}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{deltas} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{MM}\PY{l+s}{'}\PY{p}{,}
+          \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{CC}\PY{l+s}{'}\PY{p}{,}
+          \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{MC}\PY{l+s}{'}\PY{p}{,}
+          \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{M}\PY{l+s}{'}\PY{p}{,}
+          \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}\PY{l+s}{'}\PY{l+s}{C}\PY{l+s}{'}\PY{p}{\PYZcb{}}
+
+\PY{k+kn}{import} \PY{n+nn}{doctest}
+\PY{k}{class} \PY{n+nc}{TestCannibals}\PY{p}{:} \PY{l+s}{"""}
+\PY{l+s}{>>> csuccessors([3,3,1,0,0,0])}
+\PY{l+s}{\PYZob{}(2, 3, 0, 1, 0, 1): }\PY{l+s}{'}\PY{l+s}{M->}\PY{l+s}{'}\PY{l+s}{, (3, 1, 0, 0, 2, 1): }\PY{l+s}{'}\PY{l+s}{CC->}\PY{l+s}{'}\PY{l+s}{, (3, 2, 0, 0, 1, 1): }\PY{l+s}{'}\PY{l+s}{C->}\PY{l+s}{'}\PY{l+s}{, (1, 3, 0, 2, 0, 1): }\PY{l+s}{'}\PY{l+s}{MM->}\PY{l+s}{'}\PY{l+s}{, (2, 2, 0, 1, 1, 1): }\PY{l+s}{'}\PY{l+s}{MC->}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+\PY{l+s}{>>> csuccessors([0,0,0,3,3,1])}
+\PY{l+s}{\PYZob{}(0, 1, 1, 3, 2, 0): }\PY{l+s}{'}\PY{l+s}{<-C}\PY{l+s}{'}\PY{l+s}{, (0, 2, 1, 3, 1, 0): }\PY{l+s}{'}\PY{l+s}{<-CC}\PY{l+s}{'}\PY{l+s}{, (1, 0, 1, 2, 3, 0): }\PY{l+s}{'}\PY{l+s}{<-M}\PY{l+s}{'}\PY{l+s}{, (2, 0, 1, 1, 3, 0): }\PY{l+s}{'}\PY{l+s}{<-MM}\PY{l+s}{'}\PY{l+s}{, (1, 1, 1, 2, 2, 0): }\PY{l+s}{'}\PY{l+s}{<-MC}\PY{l+s}{'}\PY{l+s}{\PYZcb{}}
+\PY{l+s}{"""}
+\PY{k}{print} \PY{n}{doctest}\PY{o}{.}\PY{n}{testmod}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{}--> TestResults(failed=0, attempted=2)}
+\PY{k}{print} \PY{n}{mc\PYZus{}problem}\PY{p}{(}\PY{p}{)}
+\PY{c}{\PYZsh{}--> [(3, 3, 1, 0, 0, 0),}
+\PY{c}{\PYZsh{}--> 'CC->',(3, 1, 0, 0, 2, 1),}
+\PY{c}{\PYZsh{}--> '<-C', (3, 2, 1, 0, 1, 0),}
+\PY{c}{\PYZsh{}--> 'CC->', (3, 0, 0, 0, 3, 1),}
+\PY{c}{\PYZsh{}--> '<-C', (3, 1, 1, 0, 2, 0),}
+\PY{c}{\PYZsh{}--> 'MM->', (1, 1, 0, 2, 2, 1),}
+\PY{c}{\PYZsh{}--> '<-MC', (2, 2, 1, 1, 1, 0),}
+\PY{c}{\PYZsh{}--> 'MM->', (0, 2, 0, 3, 1, 1),}
+\PY{c}{\PYZsh{}--> '<-C', (0, 3, 1, 3, 0, 0),}
+\PY{c}{\PYZsh{}--> 'CC->', (0, 1, 0, 3, 2, 1),}
+\PY{c}{\PYZsh{}--> '<-C', (0, 2, 1, 3, 1, 0),}
+\PY{c}{\PYZsh{}--> 'CC->', (0, 0, 0, 3, 3, 1)]}
+\end{Verbatim}

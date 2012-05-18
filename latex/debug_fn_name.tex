@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{debug\PYZus{}fn}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Return a modified function that first prints out }
+\PY{l+s+sd}{  function name and arguments}
+\PY{l+s+sd}{  then calls the function."""} \PY{c}{\PYZsh{} this is the doc string}
+  \PY{k}{def} \PY{n+nf}{\PYZus{}f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+      \PY{l+s+sd}{""" Here's the bit that prints out the name and args"""}
+      \PY{k}{print} \PY{l+s}{"}\PY{l+s}{Called }\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{(}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{)}\PY{l+s}{"}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{, }\PY{l+s}{'}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{repr}\PY{p}{,} \PY{n}{args}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+      \PY{k}{return} \PY{n}{f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+  \PY{k}{return} \PY{n}{\PYZus{}f}
+
+\PY{k}{print} \PY{n}{debug\PYZus{}fn}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}
+\PY{c}{\PYZsh{} --> debug\PYZus{}fn}
+\end{Verbatim}

@@ -46,7 +46,27 @@
 \subsubsection{split}\index{python!string!split}
 \input{split}
 
+	
+
 \subsection{hash}\index{python!hash}
+
+Implements a hash function, that is irreversible, gives a unique output and changing the input just a litte, gives a totally different output.
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item \textbf{crc32} - Designed for checksums. It's fast, but its security properties are not very good - it's very easy to find a \emph{collision}, when two things hash to the same value.
+\item \textbf{md5} - Used to be used because it was pretty fast and pretty secured. But it's not secure any longer - it's easy to find collisions. It's found on every system.
+\item \textbf{sha1} - Not as fast, but fairly secured. Second most widely used hash after md5.
+\item \textbf{sha256} - If you are really worried about securing your data, but it's the slowest.
+\item \textbf{bcrypt} - Besides incorporating a salt to protect against rainbow table attacks, bcrypt is an adaptive hash: over time it can be made slower and slower so it remains resistant to specific brute-force search attacks against the hash and the salt.
+\end{list}
 
 \subsubsection{get}\index{python!hash!get}
 
@@ -54,10 +74,107 @@ Does not generate a \emph{KeyError} when referencing a key that does not exist i
 
 \input{hash_get}
 
+
+\subsubsection{defaultdict}\index{python!hash!defaultdict}
+
+\input{hash_defaultdict}
+
+
+\subsubsection{merge}\index{python!hash!merge}
+
+Merge two or more dictionaries
+
+\input{hash_merge}
+
+
+
+\subsection{list}\index{python!list}
+
+\subsubsection{map}\index{python!list!map}
+
+\input{map}
+
+
+
 \subsection{itertools}\index{itertools}
 
 \subsubsection{permutations}
 \input{permutations}
+
+
+
+
+\subsection{random}\index{python!random}
+
+\subsubsection{choice}\index{python!random!choice}
+
+\input{random_choice}
+
+
+
+\subsection{range vs xrange}\index{python!range}\index{python!xrange}
+
+range creates a list in memory, but xrange is a generator, so it evaluates lazily.
+
+
+
+
+\subsection{lambda}
+
+\input{lambda}
+
+
+\subsection{Something}
+
+\subsubsection{\_\_name\_\_}
+
+\input{debug_fn_name}
+
+\subsubsection{\_\_doc\_\_}
+
+\input{debug_fn_doc}
+
+
+
+
+\subsection{classes}
+
+\input{class}
+
+
+\subsection{Structured Query Language - SQL}\index{SQL}
+
+Invented in the 1970s.
+
+\input{sqlite}
+
+\subsubsection{index}\index{SQL!index}
+
+A \emph{sequential scan}\index{SQL!index!sequential scan} doesn't work fine when you have a million rows to scan. Indexes increase the speed of database reads, but probably decrease the speed of database inserts, since the indexes have to be updated.
+
+\begin{tabular}{l}
+explain analyze select name from users where id = 123; \\
+create index user\_id on users(id); \\
+drop index user\_id;
+\end{tabular}
+
+\textbf{hashtable}, not sorted, lookup in constant time
+
+\textbf{tree}, sorted, lookup in the log n order
+
+
+
+\subsection{ACID}\index{ACID}
+
+\textbf{Atomicity.} All parts of a \emph{transaction} succeed or fail together.
+
+\textbf{Consistency.} The database will always be consistent. The database will move from one valid transaction to the next. \emph{Replication lag}\index{ACID!replication lag} is an example of the loss of consistency.
+
+\textbf{Isolation.} No transaction can interfere with another's. Sometimes accomplished by \emph{locking}\index{ACID!locking}.
+
+\textbf{Durability.} Once the transaction is comitted, it won't be lost.
+
+
 
 \subsection{Generator Expressions}\index{Generator Expressions}
 
@@ -77,11 +194,79 @@ Does not generate a \emph{KeyError} when referencing a key that does not exist i
 
 \input{generator_expressions}
 
+
+
+
 \subsection{Generator Functions}\index{Generator Functions}
 
 Allows us to deal with infinite sequences.
 
 \input{generator_functions}
+
+Print only odd numbers
+
+\input{generator_odds_only}
+
+
+
+\subsection{Decorator Notation}\index{Decorator Notation}
+
+\subsubsection{Function Mapping - An expressiveness tool}
+
+Extend a binary function to a function that can take any number of arguments.
+
+\input{n_ary}
+
+This pattern is so common in python, that there's a special notation for it, called the Decorator Notation.
+
+\input{seq_decorated}
+
+But there is one problem with how we have specfied this decorator. In an interactive session, asking for help on seq, it is called \emph{n\_ary\_f}. To fix this:
+
+\input{n_ary_wrapped}
+
+We have, though, introduced some repetition now. We always want to update the wrapper for every decorator.
+
+\input{n_ary_decorated}
+
+or
+
+\input{decorator_darius_bacon}
+
+
+
+
+\subsubsection{Memoization - A performance tool}
+
+\input{memo}
+
+
+
+
+\subsubsection{Count Calls - A debugging tool}
+
+\input{countcalls}
+
+Observe the ratio 1.618 = $(1+\sqrt{5})/2$, \emph{the Golden Ratio}\index{The Golden Ratio}.
+
+
+
+
+\subsubsection{Trace - A debugging tool}
+
+\input{trace}
+
+
+
+\subsubsection{Disabled - A debugging tool}
+
+Another name for the identity function. If one of the debug tools are being used (let's say \emph{trace}) and being scattered all around a file, it's easy to disable it by just:
+
+\input{decorator_disabled}
+
+
+
+
 
 \subsection{The Law of Diminishing Returns}
 
@@ -104,6 +289,9 @@ In python 2.x, you can do integer division. In python 3, integer division return
 \input{future_imports}
 
 \subsection{Regular Expressions}\index{Regular Expressions}
+
+Regular expressions describe regular languages and can be represented by a FSM.
+If a language is regular, then that language is also context free.
 The module to import in python is called re. A regular expression is written
 
 \subsubsection{findall}\index{Regular Expressions!findall}
@@ -112,7 +300,7 @@ The module to import in python is called re. A regular expression is written
 where the \emph{r} actually means \emph{raw string} instead of \emph{regular expression}. The + and * operators are called \emph{Kleene Operators}\index{Regular Expressions!Kleene Operators} after Stephen C. Kleene.
 
 \subsubsection{search}\index{Regular Expressions!search}
-\input{search}
+\input{search}j
 
 \begin{tabular}{r | l}
 	\textbackslash b & word boundary \\
@@ -125,6 +313,43 @@ where the \emph{r} actually means \emph{raw string} instead of \emph{regular exp
 
 \subsection{sub}\index{Regular Expressions!sub}
 \input{re_sub}
+
+j\subsection*{•}
+
+Grammar describe context free languages, a more powerful set of strings than regular languages, and is represented by context free grammar. If a language is context-free, then that language is sometimes also regular.
+
+\begin{tabular}{r l}
+	r'ab' $\Rightarrow$ & g $\rightarrow$ a b \\
+	r'a*' $\Rightarrow$ & g $\rightarrow \epsilon$ \\
+	& g $\rightarrow$ a g \\
+	r'a$|$b' $\Rightarrow$ & g $\rightarrow$ a \\
+	& g $\rightarrow$ b \\	
+\end{tabular}
+
+It's f.ex. impossible to capture balanced parenthesis with regular expressions.
+
+A grammar is abiguous if at least 1 string in the grammar has more than 1 different parse tree.
+
+
+
+\subsection{Problems}\index{Problems}
+
+
+\subsubsection{Water Pouring Problem}\index{Problems!Water Pouring}
+
+\input{water_pouring_problem}
+
+
+\subsubsection{The Bridge - Lowest Cost Search}\index{Problems!Bridge}
+
+\input{lcs}
+
+
+\subsubsection{Missionaries and Cannibals - Shortest Path Search}\index{Problems!Missionaries and Cannibals}
+
+\input{sps}
+
+
 
 \section{Some Other Section}
 
@@ -145,6 +370,18 @@ Invented by Tim Berners-Lee around 1990 and credited with inventint the world-wi
 Use the tags \emph{strong}\index{HTML!strong} and \emph{em}\index{HTML!em} when the contents of your page requires that certain words or phrases be stressed. If you are only highlighting for visual effect use the tags \emph{b}\index{HTML!b} and \emph{i}\index{HTML!i}.
 
 \subsection{HTTP Request}\index{HTML!Request}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Cookie: user\_id = 12345; last\_seen = Dec 25, 1985
+\end{list}
 
 \subsubsection{GET Request}\index{HTML!Request!GET}
 
@@ -172,6 +409,8 @@ A response can be static\index{HTTP Response!static}, which is a pre-written fil
 \item Server: Apache /2.2.3 - Similar to User-Agent header on the request. Best to make this up, otherwise you're just giving away free information to a would be hacker that want to know what vulnerability that works against you.
 \item Content-Type: text/html; charset=utf-8
 \item Content-Length: 1539
+\item Set-Cookie: user\_id = 12345; Domain = www.example.com; Path = /foo
+\item Set-Cookie: last\_seen = Dec 25, 1985
 \end{list}
 
 \subsubsection*{Status Codes}
@@ -289,7 +528,7 @@ m_{n-i} = D_k(c_{n-1}) \oplus c_{n-2}
 \item The final cipher text block depends on all message blocks
 \end{list}
 
-\subsection{Lexical Analysis}
+\subsection{Lexical Analysis - Lexing}
 
 Break something down into words. A \emph{token} is the smallest unit of lexical analysis output.
 
@@ -309,6 +548,14 @@ A \emph{Lexical Analyzer} or \emph{lexer} is a collection of token definitions, 
 A state can be either \emph{exclusive} or \emph{inclusive}.
 
 \input{token_states}
+
+\subsection{Syntactical Analysis - Parsing}
+
+Breaking down a list of tokens to see if it's valid in the grammar or breaking down a list of words to see if they follow the rules of a language.
+
+A \emph{parsing state} is a rewrite rule from the grammar, augmented with one red dot on the right hand side of the rule.
+
+\input{parsing}
 
 \subsection{JavaScript}\index{JavaScript}
 
@@ -409,6 +656,112 @@ User input need to be esacped.
 \subsubsection{Redirection}\index{Google App Engine!Forms!Redirection}
 
 With redirection one can reload the page without having resubmitting a form. It's also good practice to have distinct pages for forms and successes.
+
+
+
+\subsection{Templates}\index{Google App Engine!Templates}
+
+Install the \emph{jinja2} library
+
+\begin{tabular}{l}
+sudo easy\_install jinja2
+\end{tabular}
+
+and modify your \emph{app.yaml} file
+
+\input{app_jinja2}
+
+Make a simple html file in your \emph{templates} directory
+
+\input{front}
+
+and write your main file
+
+\input{asciichan}
+
+\subsection{CSS}\index{Google App Engine!CSS}
+
+\input{app_css}
+
+\subsection{Google App Engine Datastore}
+\
+\textbf{Entity.} Tables, where the columns aren't fixed, all have id fields and have a notion of parents/ancestors which is a relation to other entities.
+
+
+
+\subsubsection{GQL}\index{Google App Engine!Google App Engine Datastore!GQL}
+
+A simplified version of SQL, where all queries begins with \emph{select *}, there are no joins and all queries must be indexed.
+
+\input{gql}
+
+\subsubsection{Types}\index{Google App Engine!Google App Engine Datastore!Types}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Integer
+\item Float
+\item String - $<$ 500 chars, can be indexed and sorted
+\item Text - $>$ 500 chars, cannot be indexed or sorted
+\item Date
+\item Time
+\item DateTime
+\item Email
+\item Link
+\item PostalAddress
+\end{list}
+
+\input{post_model}
+
+\subsection{Cookies}
+
+A small piece of (temporary) data, clientside enforced stored in the browser for a website. Generally one can store about 20 cookies per website, which is a browser limitation. The length of the cookie is limited to around 4 kb. It also has to be a direct match or a subset to a particular domain.
+
+Good uses of cookies
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Storing login information
+\item Storing small amounts of data to avoid hitting a database
+\item tracking a user for ads
+\item \textcolor{red}{storing user preferences info - NO, want data to survice}
+\end{list}
+
+One can change a cookie within the console in one's browser's development tools
+
+\begin{tabular}{l}
+document.cookie $\#$ "visits=6" \\
+document.cookie="visits=10000"
+\end{tabular}
+
+Secure the cookie with a HMAC\index{Cookies!HMAC}
+
+\input{app_cookie}
+
+\begin{tabular}{l}
+document.cookie $\#$ "visits=6|295c82aceeb5f3715e6e3304199e1ae0" \\
+\end{tabular}
+
+\section{Qotes}
+
+Ascii art. It's a fantastic way for people to waste their time in front of their keyboards. - Hoffman
+
+If your data has structure, use Oracle. If your data has no structure, use Hadoop. If your data has no value, use MongoDB.
+
+Time flies like an arrow, fruit flies like a banana.
 
 
 

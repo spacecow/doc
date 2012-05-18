@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{ply.lex} \PY{k+kn}{as} \PY{n+nn}{lex}
+\PY{k+kn}{import} \PY{n+nn}{ply.yacc} \PY{k+kn}{as} \PY{n+nn}{yacc}
+
+\PY{n}{tokens} \PY{o}{=} \PY{p}{(}
+  \PY{l+s}{'}\PY{l+s}{COMMA}\PY{l+s}{'}\PY{p}{,}
+  \PY{l+s}{'}\PY{l+s}{IDENTIFIER}\PY{l+s}{'}\PY{p}{,}
+  \PY{l+s}{'}\PY{l+s}{LPAREN}\PY{l+s}{'}\PY{p}{,}
+  \PY{l+s}{'}\PY{l+s}{NUMBER}\PY{l+s}{'}\PY{p}{,}
+  \PY{l+s}{'}\PY{l+s}{RPAREN}\PY{l+s}{'}\PY{p}{,}
+\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}NUMBER}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+  \PY{l+s}{r'}\PY{l+s}{-?[0-9]+(}\PY{l+s}{\PYZbs{}}\PY{l+s}{.[0-9]*)?}\PY{l+s}{'}
+  \PY{n}{t}\PY{o}{.}\PY{n}{value} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{t}\PY{o}{.}\PY{n}{value}\PY{p}{)}
+  \PY{k}{return} \PY{n}{t}
+
+\PY{n}{t\PYZus{}COMMA} \PY{o}{=} \PY{l+s}{r'}\PY{l+s}{,}\PY{l+s}{'}
+\PY{n}{t\PYZus{}IDENTIFIER} \PY{o}{=} \PY{l+s}{r'}\PY{l+s}{[A-Za-z][A-Za-z\PYZus{}]*}\PY{l+s}{'}
+\PY{n}{t\PYZus{}LPAREN} \PY{o}{=} \PY{l+s}{r'}\PY{l+s}{\PYZbs{}}\PY{l+s}{(}\PY{l+s}{'}
+\PY{n}{t\PYZus{}RPAREN} \PY{o}{=} \PY{l+s}{r'}\PY{l+s}{\PYZbs{}}\PY{l+s}{)}\PY{l+s}{'}
+
+\PY{k}{def} \PY{n+nf}{t\PYZus{}error}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+  \PY{k}{print} \PY{l+s}{"}\PY{l+s}{JavaScript Lexer: Illegal character }\PY{l+s}{"} \PY{o}{+} \PY{n}{t}\PY{o}{.}\PY{n}{value}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+  \PY{n}{t}\PY{o}{.}\PY{n}{lexer}\PY{o}{.}\PY{n}{skip}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{p\PYZus{}exp\PYZus{}call}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{l+s}{'}\PY{l+s}{exp : IDENTIFIER LPAREN optargs RPAREN}\PY{l+s}{'}
+    \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+s}{"}\PY{l+s}{call}\PY{l+s}{"}\PY{p}{,} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+    
+\PY{k}{def} \PY{n+nf}{p\PYZus{}exp\PYZus{}number}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{l+s}{'}\PY{l+s}{exp : NUMBER}\PY{l+s}{'}
+    \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+s}{"}\PY{l+s}{number}\PY{l+s}{"}\PY{p}{,} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    
+\PY{k}{def} \PY{n+nf}{p\PYZus{}optargs}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{l+s}{'}\PY{l+s}{optargs : args}\PY{l+s}{'}
+    \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+    
+\PY{k}{def} \PY{n+nf}{p\PYZus{}optargs\PYZus{}empty}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{l+s}{'}\PY{l+s}{optargs : }\PY{l+s}{'}
+    \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{p\PYZus{}args}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{l+s}{'}\PY{l+s}{args : exp COMMA args}\PY{l+s}{'}
+    \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]} \PY{o}{+} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{p\PYZus{}args\PYZus{}last}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{l+s}{'}\PY{l+s}{args : exp}\PY{l+s}{'}
+    \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{p}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{p\PYZus{}error}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+    \PY{k}{print} \PY{l+s}{"}\PY{l+s}{Syntax error in input!}\PY{l+s}{"}
+
+\PY{n}{lexer} \PY{o}{=} \PY{n}{lex}\PY{o}{.}\PY{n}{lex}\PY{p}{(}\PY{p}{)}
+\PY{n}{parser} \PY{o}{=} \PY{n}{yacc}\PY{o}{.}\PY{n}{yacc}\PY{p}{(}\PY{p}{)}
+\PY{k}{print} \PY{n}{parser}\PY{o}{.}\PY{n}{parse}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{myfun(11,12)}\PY{l+s}{"}\PY{p}{,}\PY{n}{lexer}\PY{o}{=}\PY{n}{lexer}\PY{p}{)}
+\PY{c}{\PYZsh{}--> ('call', 'myfun', [('number', 11.0), ('number', 12.0)])}
+\end{Verbatim}

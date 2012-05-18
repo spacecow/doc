@@ -1,0 +1,83 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{doctest}
+\PY{n}{fs} \PY{o}{=} \PY{n+nb}{frozenset}
+
+\PY{k}{def} \PY{n+nf}{elapsed\PYZus{}time}\PY{p}{(}\PY{n}{path}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{path}\PY{p}{[}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+\PY{k}{def} \PY{n+nf}{path\PYZus{}actions}\PY{p}{(}\PY{n}{path}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{path}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{bridge\PYZus{}problem}\PY{p}{(}\PY{n}{here}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Find the fastest (least elapsed time) path to the goal in the bridge problem.}
+\PY{l+s+sd}{  State will be a (peoplelight\PYZus{}here, peoplelight\PYZus{}there, time\PYZus{}elapsed)}
+\PY{l+s+sd}{  E.g. (\PYZob{}1,2,5,10,'light'\PYZcb{}, \PYZob{}\PYZcb{}, 0)"""}
+  \PY{n}{here} \PY{o}{=} \PY{n}{fs}\PY{p}{(}\PY{n}{here}\PY{p}{)} \PY{o}{|} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}
+  \PY{n}{explored} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+  \PY{n}{frontier} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{p}{(}\PY{n}{here}\PY{p}{,}\PY{n}{fs}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{]}
+  \PY{k}{if} \PY{o+ow}{not} \PY{n}{here} \PY{o+ow}{or} \PY{n}{here} \PY{o}{==} \PY{n+nb}{set}\PY{p}{(}\PY{p}{[}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n}{frontier}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+  \PY{k}{while} \PY{n}{frontier}\PY{p}{:}
+    \PY{n}{path} \PY{o}{=} \PY{n}{frontier}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+    \PY{n}{here}\PY{p}{,} \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{k}{if} \PY{o+ow}{not} \PY{n}{here}\PY{p}{:} \PY{k}{return} \PY{n}{path} \PY{c}{\PYZsh{}check for solution when we pop}
+    \PY{k}{for} \PY{p}{(}\PY{n}{state}\PY{p}{,}\PY{n}{action}\PY{p}{)} \PY{o+ow}{in} \PY{n}{bsuccessors}\PY{p}{(}\PY{n}{path}\PY{p}{[}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+      \PY{k}{if} \PY{n}{state} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{explored}\PY{p}{:}
+        \PY{n}{here}\PY{p}{,} \PY{n}{there}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{state}
+        \PY{n}{explored}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{state}\PY{p}{)}
+        \PY{n}{npath} \PY{o}{=} \PY{n}{path} \PY{o}{+} \PY{p}{[}\PY{n}{action}\PY{p}{,}\PY{n}{state}\PY{p}{]}
+        \PY{c}{\PYZsh{}don't check for solution here}
+        \PY{n}{frontier}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{npath}\PY{p}{)}
+        \PY{n}{frontier}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{key}\PY{o}{=}\PY{n}{elapsed\PYZus{}time}\PY{p}{)}
+  \PY{k}{return} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{def} \PY{n+nf}{bsuccessors}\PY{p}{(}\PY{n}{state}\PY{p}{)}\PY{p}{:}
+  \PY{l+s+sd}{"""Return a dict of \PYZob{}state:action\PYZcb{} pairs. A state is a (here, there, t) tuple,}
+\PY{l+s+sd}{  where here and there are fss of people (indicated by their times) and/or}
+\PY{l+s+sd}{  the 'light', and t is a number indicating the elapsed time."""}
+  \PY{n}{here}\PY{p}{,} \PY{n}{there}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{state}
+  \PY{k}{if} \PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'} \PY{o+ow}{in} \PY{n}{here}\PY{p}{:}
+    \PY{k}{return} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{here} \PY{o}{-} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{there} \PY{o}{|} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{t}\PY{o}{+}\PY{n+nb}{max}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                 \PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{p}{)}\PY{p}{)}
+                \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n}{here} \PY{k}{if} \PY{n}{a} \PY{o+ow}{is} \PY{o+ow}{not} \PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'} \PY{k}{for} \PY{n}{b} \PY{o+ow}{in} \PY{n}{here} \PY{k}{if} \PY{n}{b} \PY{o+ow}{is} \PY{o+ow}{not} \PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{)}
+  \PY{k}{else}\PY{p}{:}
+    \PY{k}{return} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{here} \PY{o}{|} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{there} \PY{o}{-} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{t}\PY{o}{+}\PY{n+nb}{max}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                 \PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{p}{)}\PY{p}{)}
+                \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n}{there} \PY{k}{if} \PY{n}{a} \PY{o+ow}{is} \PY{o+ow}{not} \PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'} \PY{k}{for} \PY{n}{b} \PY{o+ow}{in} \PY{n}{there} \PY{k}{if} \PY{n}{b} \PY{o+ow}{is} \PY{o+ow}{not} \PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{)}
+
+\PY{k}{class} \PY{n+nc}{TestBridge}\PY{p}{:} \PY{l+s}{"""}
+\PY{l+s}{>>> elapsed\PYZus{}time(bridge\PYZus{}problem([1,2,5,10]))}
+\PY{l+s}{17}
+
+\PY{l+s}{\PYZsh{}\PYZsh{} There are two equally good solutions}
+\PY{l+s}{>>> S1 = [(2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (1, 1, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (5, 10, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (2, 2, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{)]}
+\PY{l+s}{>>> S2 = [(2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (2, 2, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (5, 10, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (1, 1, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{)]}
+\PY{l+s}{>>> path\PYZus{}actions(bridge\PYZus{}problem([1,2,5,10])) in (S1, S2)}
+\PY{l+s}{True}
+
+\PY{l+s}{\PYZsh{}\PYZsh{} Try some other problems}
+\PY{l+s}{>>> path\PYZus{}actions(bridge\PYZus{}problem([1,2,5,10,15,20]))}
+\PY{l+s}{[(2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (1, 1, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (10, 5, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (2, 2, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (1, 1, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (15, 20, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (2, 2, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{)]}
+
+\PY{l+s}{>>> path\PYZus{}actions(bridge\PYZus{}problem([1,2,4,8,16,32]))}
+\PY{l+s}{[(2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (1, 1, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (8, 4, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (2, 2, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (1, 2, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (1, 1, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (16, 32, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{), (2, 2, }\PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{l+s}{), (2, 1, }\PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{l+s}{)]}
+
+\PY{l+s}{>>> [elapsed\PYZus{}time(bridge\PYZus{}problem([1,2,4,8,16][:N])) for N in range(6)]}
+\PY{l+s}{[0, 1, 2, 7, 15, 28]}
+
+\PY{l+s}{>>> [elapsed\PYZus{}time(bridge\PYZus{}problem([1,1,2,3,5,8,13,21][:N])) for N in range(8)]}
+\PY{l+s}{[0, 1, 1, 2, 6, 12, 19, 30]}
+
+\PY{l+s}{"""}
+
+\PY{k}{print} \PY{n}{doctest}\PY{o}{.}\PY{n}{testmod}\PY{p}{(}\PY{p}{)}
+\PY{k}{def} \PY{n+nf}{test}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+  \PY{k}{assert} \PY{n}{bsuccessors}\PY{p}{(}\PY{p}{(}\PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{p}{\PYZob{}}\PY{p}{(}\PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{:}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{->}\PY{l+s}{'}\PY{p}{)}\PY{p}{\PYZcb{}}
+  \PY{k}{assert} \PY{n}{bsuccessors}\PY{p}{(}\PY{p}{(}\PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{p}{\PYZob{}}\PY{p}{(}\PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{'}\PY{l+s}{light}\PY{l+s}{'}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{n}{fs}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{<-}\PY{l+s}{'}\PY{p}{)}\PY{p}{\PYZcb{}}
+  \PY{k}{return} \PY{l+s}{'}\PY{l+s}{tests pass}\PY{l+s}{'}
+
+\PY{k}{print} \PY{n}{test}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{}--> tests pass}
+\PY{k}{print} \PY{n}{bridge\PYZus{}problem}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\PY{c}{\PYZsh{}--> [(frozenset([1, 2, 'light', 10, 5]), frozenset([]), 0), (2, 1, '->'), }
+\PY{c}{\PYZsh{}-->  (frozenset([10, 5]), frozenset([1, 2, 'light']), 2), (1, 1, '<-'),}
+\PY{c}{\PYZsh{}-->  (frozenset([1, 10, 5, 'light']), frozenset([2]), 3), (5, 10, '->'),}
+\PY{c}{\PYZsh{}-->  (frozenset([1]), frozenset(['light', 2, 10, 5]), 13), (2, 2, '<-'),}
+\PY{c}{\PYZsh{}-->  (frozenset([1, 2, 'light']), frozenset([10, 5]), 15), (2, 1, '->'),}
+\PY{c}{\PYZsh{}-->  (frozenset([]), frozenset([1, 10, 2, 5, 'light']), 17)]}
+\end{Verbatim}

@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{\PYZus{}\PYZus{}future\PYZus{}\PYZus{}} \PY{k+kn}{import} \PY{n}{division}
+\PY{k+kn}{from} \PY{n+nn}{decorators} \PY{k+kn}{import} \PY{n}{decorator}\PY{p}{,}\PY{n}{memo}
+
+\PY{n+nd}{@decorator}
+\PY{k}{def} \PY{n+nf}{countcalls}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{\PYZus{}f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+    \PY{n}{callcounts}\PY{p}{[}\PY{n}{\PYZus{}f}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{return} \PY{n}{f}\PY{p}{(}\PY{o}{*}\PY{n}{args}\PY{p}{)}
+  \PY{n}{callcounts}\PY{p}{[}\PY{n}{\PYZus{}f}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+  \PY{k}{return} \PY{n}{\PYZus{}f} 
+\PY{n}{callcounts} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+
+\PY{n}{prev\PYZus{}calls} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{32}\PY{p}{)}\PY{p}{:}
+  \PY{n+nd}{@countcalls}
+  \PY{k}{def} \PY{n+nf}{fib}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{n}\PY{o}{<}\PY{o}{=}\PY{l+m+mi}{1} \PY{k}{else} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{o}{-}\PY{l+m+mi}{2}\PY{p}{)}
+  \PY{n}{result}\PY{p}{,}\PY{n}{calls} \PY{o}{=} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{,}\PY{n}{callcounts}\PY{p}{[}\PY{n}{fib}\PY{p}{]}
+  \PY{k}{print} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}2d}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}7d}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}8d}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}1.4f}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{result}\PY{p}{,}\PY{n}{calls}\PY{p}{,}\PY{n}{calls}\PY{o}{/}\PY{n}{prev\PYZus{}calls}\PY{p}{)}
+  \PY{n}{prev\PYZus{}calls} \PY{o}{=} \PY{n}{calls}
+\PY{c}{\PYZsh{} ...}
+\PY{c}{\PYZsh{} --> 30 1346269  7049123 1.6180}
+\PY{c}{\PYZsh{} --> 31 2178309 11405740 1.6180}
+
+\PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{32}\PY{p}{)}\PY{p}{:}
+  \PY{n+nd}{@countcalls}
+  \PY{n+nd}{@memo}
+  \PY{k}{def} \PY{n+nf}{fib}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{n}\PY{o}{<}\PY{o}{=}\PY{l+m+mi}{1} \PY{k}{else} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{o}{-}\PY{l+m+mi}{2}\PY{p}{)}
+  \PY{n}{result}\PY{p}{,}\PY{n}{calls} \PY{o}{=} \PY{n}{fib}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{,}\PY{n}{callcounts}\PY{p}{[}\PY{n}{fib}\PY{p}{]}
+  \PY{k}{print} \PY{l+s}{'}\PY{l+s+si}{\PYZpc{}2d}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}7d}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}8d}\PY{l+s}{ }\PY{l+s+si}{\PYZpc{}1.4f}\PY{l+s}{'} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{result}\PY{p}{,}\PY{n}{calls}\PY{p}{,}\PY{n}{calls}\PY{o}{/}\PY{n}{prev\PYZus{}calls}\PY{p}{)}
+  \PY{n}{prev\PYZus{}calls} \PY{o}{=} \PY{n}{calls}
+\PY{c}{\PYZsh{} ...}
+\PY{c}{\PYZsh{} --> 30 1346269       59 1.0351}
+\PY{c}{\PYZsh{} --> 31 2178309       61 1.0339}
+\end{Verbatim}

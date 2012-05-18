@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{os}
+\PY{k+kn}{import} \PY{n+nn}{webapp2}
+\PY{k+kn}{import} \PY{n+nn}{jinja2}
+
+\PY{n}{template\PYZus{}dir} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{dirname}\PY{p}{(}\PY{n}{\PYZus{}\PYZus{}file\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{templates}\PY{l+s}{'}\PY{p}{)}
+\PY{n}{jinja\PYZus{}env} \PY{o}{=} \PY{n}{jinja2}\PY{o}{.}\PY{n}{Environment}\PY{p}{(}\PY{n}{loader} \PY{o}{=} \PY{n}{jinja2}\PY{o}{.}\PY{n}{FileSystemLoader}\PY{p}{(}\PY{n}{template\PYZus{}dir}\PY{p}{)}\PY{p}{,} \PY{n}{autoescape} \PY{o}{=} \PY{n+nb+bp}{True}\PY{p}{)}
+
+\PY{k}{class} \PY{n+nc}{Handler}\PY{p}{(}\PY{n}{webapp2}\PY{o}{.}\PY{n}{RequestHandler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{o}{*}\PY{n}{a}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{response}\PY{o}{.}\PY{n}{out}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{o}{*}\PY{n}{a}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}
+
+  \PY{k}{def} \PY{n+nf}{render\PYZus{}str}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{params}\PY{p}{)}\PY{p}{:}
+    \PY{n}{t} \PY{o}{=} \PY{n}{jinja\PYZus{}env}\PY{o}{.}\PY{n}{get\PYZus{}template}\PY{p}{(}\PY{n}{template}\PY{p}{)}
+    \PY{k}{return} \PY{n}{t}\PY{o}{.}\PY{n}{render}\PY{p}{(}\PY{n}{params}\PY{p}{)}
+
+  \PY{k}{def} \PY{n+nf}{render}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{render\PYZus{}str}\PY{p}{(}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{class} \PY{n+nc}{MainPage}\PY{p}{(}\PY{n}{Handler}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{render}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{front.html}\PY{l+s}{'}\PY{p}{)}
+
+\PY{n}{app} \PY{o}{=} \PY{n}{webapp2}\PY{o}{.}\PY{n}{WSGIApplication}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{/}\PY{l+s}{'}\PY{p}{,}\PY{n}{MainPage}\PY{p}{)}\PY{p}{]}\PY{p}{,}\PY{n}{debug}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}

@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{google.appengine.ext} \PY{k+kn}{import} \PY{n}{db}
+\PY{k}{class} \PY{n+nc}{Post}\PY{p}{(}\PY{n}{db}\PY{o}{.}\PY{n}{Model}\PY{p}{)}\PY{p}{:}
+  \PY{n}{subject} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{StringProperty}\PY{p}{(}\PY{n}{required}       \PY{o}{=} \PY{n+nb+bp}{True}\PY{p}{)}
+  \PY{n}{content} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{TextProperty}\PY{p}{(}\PY{n}{required}         \PY{o}{=} \PY{n+nb+bp}{True}\PY{p}{)}
+  \PY{n}{created} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{DateTimeProperty}\PY{p}{(}\PY{n}{auto\PYZus{}now\PYZus{}add} \PY{o}{=} \PY{n+nb+bp}{True}\PY{p}{)}
+  \PY{n}{updated} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{DateTimeProperty}\PY{p}{(}\PY{n}{auto\PYZus{}now}     \PY{o}{=} \PY{n+nb+bp}{True}\PY{p}{)}
+\end{Verbatim}
