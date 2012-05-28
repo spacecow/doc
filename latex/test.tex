@@ -34,12 +34,19 @@
 \scriptsize
 \input{testing}
 
+
+
+\subsubsection{Dependency Injection}\index{python!Testing!Dependency Injection}
+
+\input{dependency_injection}
+
+
 \subsection{Profiling}
 \input{profiling}
 
 \subsection{string}\index{python!string}
 
-\subsubsection{String Substitution}\index{python!string!Substitution}
+\subsubsection{Substitution}\index{python!string!Substitution}
 
 \input{string_substitution}
 
@@ -106,9 +113,19 @@ Merge two or more dictionaries
 
 \subsection{random}\index{python!random}
 
+
 \subsubsection{choice}\index{python!random!choice}
 
-\input{random_choice}
+\input{random_choice_5letters}
+
+A strategy that chooses at random from possible moves.
+
+\input{random_choice_2moves}
+
+
+\subsubsection{randint}\index{python!random!randint}
+
+\input{random_randint}
 
 
 
@@ -348,6 +365,18 @@ A grammar is abiguous if at least 1 string in the grammar has more than 1 differ
 \subsubsection{Missionaries and Cannibals - Shortest Path Search}\index{Problems!Missionaries and Cannibals}
 
 \input{sps}
+
+
+
+\section{Game Theory}
+
+\subsection{Utility Fuction}
+
+The end state has a value of 1 if it is a winning state, 0 if it is a loosing state. The previoius state for me chooses to maximize the value, while the opponent's chooses to minimize the value. The utility for a dice is the average value.
+
+\subsection{Quality Function}
+
+State plus an action.
 
 
 
@@ -754,6 +783,18 @@ Secure the cookie with a HMAC\index{Cookies!HMAC}
 \begin{tabular}{l}
 document.cookie $\#$ "visits=6|295c82aceeb5f3715e6e3304199e1ae0" \\
 \end{tabular}
+
+
+
+\subsection{Database}
+
+\subsubsection{Clear the database}
+
+\begin{tabular}{l}
+dev\_appserver.py --clear\_datastore .
+\end{tabular}
+
+
 
 \section{Qotes}
 

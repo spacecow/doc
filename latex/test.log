@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.21)  18 MAY 2012 19:03
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.3.21)  23 MAY 2012 16:32
 entering extended mode
  %&-line parsing enabled.
 **test.tex
@@ -170,54 +170,56 @@ LaTeX Font Info:    ... okay on input line 28.
 ) (./testing.tex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2.
-) (./profiling.tex) (./string_substitution.tex [1
+) (./dependency_injection.tex) (./profiling.tex [1
 
 
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./split.tex) (./hash_get
-.tex)
-(./hash_defaultdict.tex) (./hash_merge.tex) (./map.tex [2]) (./permutations.tex
-) (./random_choice.tex) (./lambda.tex) (./debug_fn_name.tex [3])
-(./debug_fn_doc.tex) (./class.tex) (./sqlite.tex) [4]
-(./generator_expressions.tex) (./generator_functions.tex [5])
-(./generator_odds_only.tex) (./n_ary.tex) (./seq_decorated.tex)
-(./n_ary_wrapped.tex) (./n_ary_decorated.tex [6]) (./decorator_darius_bacon.tex
-) (./memo.tex) (./countcalls.tex [7]) (./trace.tex) (./decorator_disabled.tex
-[8]) (./forloop.tex) (./substring.tex) (./benchmarking.tex [9])
-(./translation_table.tex) (./future_imports.tex) (./findall.tex) (./search.tex)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 306.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./string_substitution.te
+x)
+(./split.tex) (./hash_get.tex) (./hash_defaultdict.tex) [2] (./hash_merge.tex)
+(./map.tex) (./permutations.tex) (./random_choice_5letters.tex)
+(./random_choice_2moves.tex [3]) (./random_randint.tex) (./lambda.tex)
+(./debug_fn_name.tex) (./debug_fn_doc.tex) (./class.tex) (./sqlite.tex [4])
+(./generator_expressions.tex [5]) (./generator_functions.tex)
+(./generator_odds_only.tex) (./n_ary.tex [6]) (./seq_decorated.tex)
+(./n_ary_wrapped.tex) (./n_ary_decorated.tex) (./decorator_darius_bacon.tex)
+(./memo.tex [7]) (./countcalls.tex) (./trace.tex [8]) (./decorator_disabled.tex
+) (./forloop.tex) (./substring.tex [9]) (./benchmarking.tex)
+(./translation_table.tex) (./future_imports.tex) [10] (./findall.tex)
+(./search.tex)
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 323.
 
-(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+ (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 306.
- (./re_split.tex [10])
-(./re_sub.tex)
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 323.
+
+(./re_split.tex) (./re_sub.tex)
 Missing character: There is no â in font cmbx12!
 Missing character: There is no € in font cmbx12!
 Missing character: There is no ¢ in font cmbx12!
- (./water_pouring_problem.tex [11]) (./lcs.tex [12] [13])
-(./sps.tex [14]) [15] [16] [17] (./tokens.tex [18]) (./token_states.tex)
-(./parsing.tex [19]) (./factorial.tex [20]) (./token_eolcomment.tex)
-(./token_identifier.tex) [21]
+ [11] (./water_pouring_problem.tex [12])
+(./lcs.tex [13]) (./sps.tex [14] [15]) [16] [17] [18] (./tokens.tex [19])
+(./token_states.tex) (./parsing.tex [20]) (./factorial.tex [21])
+(./token_eolcomment.tex) (./token_identifier.tex)
 
-LaTeX Warning: Reference `previous work' on page 22 undefined on input line 638
+LaTeX Warning: Reference `previous work' on page 22 undefined on input line 667
 .
 
 
-LaTeX Warning: Reference `results' on page 22 undefined on input line 639.
+LaTeX Warning: Reference `results' on page 22 undefined on input line 668.
 
 
-LaTeX Warning: Reference `conclusions' on page 22 undefined on input line 640.
+LaTeX Warning: Reference `conclusions' on page 22 undefined on input line 669.
 
-(./handler.tex) (./engine_validations.tex) (./engine_escape_html.tex) [22]
-(./app_jinja2.tex) (./front.tex) (./asciichan.tex [23]) (./app_css.tex)
-(./gql.tex) (./post_model.tex) [24] (./app_cookie.tex [25])
+[22] (./handler.tex) (./engine_validations.tex) (./engine_escape_html.tex)
+(./app_jinja2.tex [23]) (./front.tex) (./asciichan.tex) (./app_css.tex [24])
+(./gql.tex) (./post_model.tex) [25] (./app_cookie.tex [26])
 No file test.bbl.
-(./test.ind [26] [27
+(./test.ind [27] [28
 
 
 ]) (./test.aux)
@@ -226,8 +228,8 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2229 strings out of 495061
- 28160 string characters out of 1182621
+ 2238 strings out of 495061
+ 28379 string characters out of 1182621
  87675 words of memory out of 3000000
  5247 multiletter control sequences out of 15000+50000
  12896 words of font info for 47 fonts, out of 3000000 for 9000
@@ -246,9 +248,9 @@ e/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1
 onts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy
 8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/
 share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on test.pdf (27 pages, 256393 bytes).
+Output written on test.pdf (28 pages, 258050 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
+ 152 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

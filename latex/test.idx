@@ -1,72 +1,74 @@
 \indexentry{python}{1}
+\indexentry{python!Testing!Dependency Injection}{1}
 \indexentry{python!string}{2}
 \indexentry{python!string!Substitution}{2}
 \indexentry{python!string!split}{2}
 \indexentry{python!hash}{2}
 \indexentry{python!hash!get}{2}
-\indexentry{python!hash!defaultdict}{2}
-\indexentry{python!hash!merge}{2}
+\indexentry{python!hash!defaultdict}{3}
+\indexentry{python!hash!merge}{3}
 \indexentry{python!list}{3}
 \indexentry{python!list!map}{3}
 \indexentry{itertools}{3}
 \indexentry{python!random}{3}
 \indexentry{python!random!choice}{3}
-\indexentry{python!range}{3}
-\indexentry{python!xrange}{3}
-\indexentry{SQL}{4}
-\indexentry{SQL!index}{4}
-\indexentry{SQL!index!sequential scan}{4}
+\indexentry{python!random!randint}{4}
+\indexentry{python!range}{4}
+\indexentry{python!xrange}{4}
+\indexentry{SQL}{5}
+\indexentry{SQL!index}{5}
+\indexentry{SQL!index!sequential scan}{5}
 \indexentry{ACID}{5}
 \indexentry{ACID!replication lag}{5}
 \indexentry{ACID!locking}{5}
 \indexentry{Generator Expressions}{5}
-\indexentry{Generator Functions}{5}
+\indexentry{Generator Functions}{6}
 \indexentry{Decorator Notation}{6}
 \indexentry{The Golden Ratio}{8}
 \indexentry{python!Future Imports}{10}
-\indexentry{Regular Expressions}{10}
-\indexentry{Regular Expressions!findall}{10}
-\indexentry{Regular Expressions!Kleene Operators}{10}
-\indexentry{Regular Expressions!search}{10}
+\indexentry{Regular Expressions}{11}
+\indexentry{Regular Expressions!findall}{11}
+\indexentry{Regular Expressions!Kleene Operators}{11}
+\indexentry{Regular Expressions!search}{11}
 \indexentry{Regular Expressions!split}{11}
 \indexentry{Regular Expressions!sub}{11}
-\indexentry{Problems}{11}
-\indexentry{Problems!Water Pouring}{11}
-\indexentry{Problems!Bridge}{12}
+\indexentry{Problems}{12}
+\indexentry{Problems!Water Pouring}{12}
+\indexentry{Problems!Bridge}{13}
 \indexentry{Problems!Missionaries and Cannibals}{14}
-\indexentry{Finite State Machine}{15}
-\indexentry{Finite State Machine!non-deterministic FSM}{15}
-\indexentry{Finite State Machine!deterministic FSM}{15}
-\indexentry{HTML}{15}
+\indexentry{Finite State Machine}{16}
+\indexentry{Finite State Machine!non-deterministic FSM}{16}
+\indexentry{Finite State Machine!deterministic FSM}{16}
+\indexentry{HTML}{16}
 \indexentry{HTML!strong}{16}
 \indexentry{HTML!em}{16}
 \indexentry{HTML!b}{16}
 \indexentry{HTML!i}{16}
 \indexentry{HTML!Request}{16}
-\indexentry{HTML!Request!GET}{16}
-\indexentry{HTML!Request!POST}{16}
-\indexentry{HTTP Response}{16}
-\indexentry{HTTP Response!static}{16}
-\indexentry{HTTP Response!dynamic}{16}
-\indexentry{HTTP Response!web application}{16}
-\indexentry{HTML!HTML Header}{16}
-\indexentry{HTML!HTML Header!User-Agent}{16}
-\indexentry{HTML!HTML Header!Host}{16}
-\indexentry{HTML!br}{16}
-\indexentry{HTML!span}{16}
-\indexentry{HTML!div}{16}
-\indexentry{Monoalphabetic Substitution Ciper}{16}
-\indexentry{Kolmogorov Complexity}{17}
-\indexentry{Pseudo-Random Number Generator}{17}
-\indexentry{CBC Mode}{17}
+\indexentry{HTML!Request!GET}{17}
+\indexentry{HTML!Request!POST}{17}
+\indexentry{HTTP Response}{17}
+\indexentry{HTTP Response!static}{17}
+\indexentry{HTTP Response!dynamic}{17}
+\indexentry{HTTP Response!web application}{17}
+\indexentry{HTML!HTML Header}{17}
+\indexentry{HTML!HTML Header!User-Agent}{17}
+\indexentry{HTML!HTML Header!Host}{17}
+\indexentry{HTML!br}{17}
+\indexentry{HTML!span}{17}
+\indexentry{HTML!div}{17}
+\indexentry{Monoalphabetic Substitution Ciper}{17}
+\indexentry{Kolmogorov Complexity}{18}
+\indexentry{Pseudo-Random Number Generator}{18}
+\indexentry{CBC Mode}{18}
 \indexentry{JavaScript}{21}
-\indexentry{CTR Mode}{21}
-\indexentry{Google App Engine}{22}
-\indexentry{Google App Engine!Handlers}{22}
-\indexentry{Google App Engine!Forms}{22}
+\indexentry{CTR Mode}{22}
+\indexentry{Google App Engine}{23}
+\indexentry{Google App Engine!Handlers}{23}
+\indexentry{Google App Engine!Forms}{23}
 \indexentry{Google App Engine!Forms!Redirection}{23}
-\indexentry{Google App Engine!Templates}{23}
-\indexentry{Google App Engine!CSS}{24}
-\indexentry{Google App Engine!Google App Engine Datastore!GQL}{24}
-\indexentry{Google App Engine!Google App Engine Datastore!Types}{24}
-\indexentry{Cookies!HMAC}{25}
+\indexentry{Google App Engine!Templates}{24}
+\indexentry{Google App Engine!CSS}{25}
+\indexentry{Google App Engine!Google App Engine Datastore!GQL}{25}
+\indexentry{Google App Engine!Google App Engine Datastore!Types}{25}
+\indexentry{Cookies!HMAC}{26}

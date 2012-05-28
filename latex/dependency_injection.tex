@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{random}
+\PY{k}{def} \PY{n+nf}{dierolls}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+  \PY{k}{while} \PY{n+nb+bp}{True}\PY{p}{:} \PY{k}{yield} \PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}
+\PY{k}{for} \PY{n}{\PYZus{}} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{:} \PY{k}{print} \PY{n+nb}{next}\PY{p}{(}\PY{n}{dierolls}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{c}{\PYZsh{}5 random numbers}
+\end{Verbatim}
