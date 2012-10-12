@@ -1,0 +1,11 @@
+run
+console
+load scala_list_init
+nums
+console
+init.nums
+run
+console
+run
+console
+run

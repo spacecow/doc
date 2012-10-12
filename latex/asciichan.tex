@@ -17,6 +17,10 @@
   \PY{k}{def} \PY{n+nf}{render}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{:}
     \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{render\PYZus{}str}\PY{p}{(}\PY{n}{template}\PY{p}{,}\PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{)}
 
+  \PY{k}{def} \PY{n+nf}{initialize}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{*}\PY{n}{a}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}\PY{p}{:}
+    \PY{n}{webapp2}\PY{o}{.}\PY{n}{RequestHandler}\PY{o}{.}\PY{n}{initialize}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{*}\PY{n}{a}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{kw}\PY{p}{)}
+    \PY{c}{\PYZsh{}initialization goes here}
+
 \PY{k}{class} \PY{n+nc}{MainPage}\PY{p}{(}\PY{n}{Handler}\PY{p}{)}\PY{p}{:}
   \PY{k}{def} \PY{n+nf}{get}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
       \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{render}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{front.html}\PY{l+s}{'}\PY{p}{)}

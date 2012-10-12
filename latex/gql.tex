@@ -1,4 +1,5 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{posts} \PY{o}{=} \PY{n}{db}\PY{o}{.}\PY{n}{GqlQuery}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{select * from Post order by created desc}\PY{l+s}{"}\PY{p}{)}
 \PY{n}{posts} \PY{o}{=} \PY{n}{Post}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{order}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{-created}\PY{l+s}{'}\PY{p}{)} \PY{c}{\PYZsh{}same}
+\PY{n}{posts} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{posts}\PY{p}{)} \PY{c}{\PYZsh{}detach from query}
 \end{Verbatim}

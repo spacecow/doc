@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{import} \PY{n+nn}{math.abs}
+
+\PY{k}{object} \PY{n+nc}{jmath}\PY{o}{\PYZob{}}
+  \PY{k}{def} \PY{n}{fixedPoint}\PY{o}{(}\PY{n}{f}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{=>}\PY{n+nc}{Double}\PY{o}{)}\PY{o}{(}\PY{n}{firstGuess}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{)} \PY{k}{=} \PY{o}{\PYZob{}}
+    \PY{k}{val} \PY{n}{tolerance} \PY{k}{=} \PY{l+m+mf}{0.0001}
+    \PY{k}{def} \PY{n}{isCloseEnough}\PY{o}{(}\PY{n}{x}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{,} \PY{n}{y}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{)} \PY{k}{=}
+      \PY{n}{abs}\PY{o}{(}\PY{n}{x}\PY{o}{-}\PY{n}{y}\PY{o}{)} \PY{o}{<} \PY{n}{tolerance}
+    \PY{k}{def} \PY{n}{iterate}\PY{o}{(}\PY{n}{guess}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Double} \PY{o}{=} \PY{o}{\PYZob{}}
+      \PY{n}{println}\PY{o}{(}\PY{n}{guess}\PY{o}{)}
+      \PY{k}{val} \PY{n}{next} \PY{k}{=} \PY{n}{f}\PY{o}{(}\PY{n}{guess}\PY{o}{)} 
+      \PY{k}{if} \PY{o}{(}\PY{n}{isCloseEnough}\PY{o}{(}\PY{n}{guess}\PY{o}{,}\PY{n}{next}\PY{o}{)}\PY{o}{)} \PY{n}{next}
+      \PY{k}{else} \PY{n}{iterate}\PY{o}{(}\PY{n}{next}\PY{o}{)} 
+    \PY{o}{\PYZcb{}}
+    \PY{n}{iterate}\PY{o}{(}\PY{n}{firstGuess}\PY{o}{)}
+  \PY{o}{\PYZcb{}}
+  \PY{k}{def} \PY{n}{averageDamp}\PY{o}{(}\PY{n}{f}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{=>}\PY{n+nc}{Double}\PY{o}{)}\PY{o}{(}\PY{n}{x}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{)} \PY{k}{=} \PY{o}{(}\PY{n}{x} \PY{o}{+} \PY{n}{f}\PY{o}{(}\PY{n}{x}\PY{o}{)}\PY{o}{)}\PY{o}{/}\PY{l+m+mi}{2}
+  \PY{k}{def} \PY{n}{sqrt}\PY{o}{(}\PY{n}{x}\PY{k}{:}\PY{k+kt}{Double}\PY{o}{)} \PY{k}{=} \PY{n}{fixedPoint}\PY{o}{(}\PY{n}{averageDamp}\PY{o}{(}\PY{n}{y}\PY{o}{=>}\PY{n}{x}\PY{o}{/}\PY{n}{y}\PY{o}{)}\PY{o}{)}\PY{o}{(}\PY{l+m+mi}{1}\PY{o}{)}
+\PY{o}{\PYZcb{}}
+\end{Verbatim}

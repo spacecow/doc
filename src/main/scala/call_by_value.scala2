@@ -1,0 +1,3 @@
+def consstOne(x:Int, y:=>Int) = 1
+def loop: Boolean = loop
+val x = loop #Not ok, infinite loop 

@@ -1,74 +1,113 @@
 \indexentry{python}{1}
-\indexentry{python!Testing!Dependency Injection}{1}
+\indexentry{python!Testing}{1}
+\indexentry{python!Testing!Dependency Injection}{2}
+\indexentry{python!Testing!Assertion}{2}
 \indexentry{python!string}{2}
 \indexentry{python!string!Substitution}{2}
-\indexentry{python!string!split}{2}
-\indexentry{python!hash}{2}
-\indexentry{python!hash!get}{2}
+\indexentry{python!string!split}{3}
+\indexentry{python!hash}{3}
+\indexentry{python!hash!get}{3}
 \indexentry{python!hash!defaultdict}{3}
 \indexentry{python!hash!merge}{3}
-\indexentry{python!list}{3}
-\indexentry{python!list!map}{3}
-\indexentry{itertools}{3}
-\indexentry{python!random}{3}
-\indexentry{python!random!choice}{3}
-\indexentry{python!random!randint}{4}
-\indexentry{python!range}{4}
-\indexentry{python!xrange}{4}
-\indexentry{SQL}{5}
-\indexentry{SQL!index}{5}
-\indexentry{SQL!index!sequential scan}{5}
-\indexentry{ACID}{5}
-\indexentry{ACID!replication lag}{5}
-\indexentry{ACID!locking}{5}
-\indexentry{Generator Expressions}{5}
-\indexentry{Generator Functions}{6}
-\indexentry{Decorator Notation}{6}
-\indexentry{The Golden Ratio}{8}
-\indexentry{python!Future Imports}{10}
-\indexentry{Regular Expressions}{11}
-\indexentry{Regular Expressions!findall}{11}
-\indexentry{Regular Expressions!Kleene Operators}{11}
-\indexentry{Regular Expressions!search}{11}
-\indexentry{Regular Expressions!split}{11}
-\indexentry{Regular Expressions!sub}{11}
-\indexentry{Problems}{12}
-\indexentry{Problems!Water Pouring}{12}
-\indexentry{Problems!Bridge}{13}
-\indexentry{Problems!Missionaries and Cannibals}{14}
-\indexentry{Finite State Machine}{16}
-\indexentry{Finite State Machine!non-deterministic FSM}{16}
-\indexentry{Finite State Machine!deterministic FSM}{16}
-\indexentry{HTML}{16}
-\indexentry{HTML!strong}{16}
-\indexentry{HTML!em}{16}
-\indexentry{HTML!b}{16}
-\indexentry{HTML!i}{16}
-\indexentry{HTML!Request}{16}
-\indexentry{HTML!Request!GET}{17}
-\indexentry{HTML!Request!POST}{17}
-\indexentry{HTTP Response}{17}
-\indexentry{HTTP Response!static}{17}
-\indexentry{HTTP Response!dynamic}{17}
-\indexentry{HTTP Response!web application}{17}
-\indexentry{HTML!HTML Header}{17}
-\indexentry{HTML!HTML Header!User-Agent}{17}
-\indexentry{HTML!HTML Header!Host}{17}
-\indexentry{HTML!br}{17}
-\indexentry{HTML!span}{17}
-\indexentry{HTML!div}{17}
-\indexentry{Monoalphabetic Substitution Ciper}{17}
-\indexentry{Kolmogorov Complexity}{18}
-\indexentry{Pseudo-Random Number Generator}{18}
-\indexentry{CBC Mode}{18}
-\indexentry{JavaScript}{21}
-\indexentry{CTR Mode}{22}
-\indexentry{Google App Engine}{23}
-\indexentry{Google App Engine!Handlers}{23}
-\indexentry{Google App Engine!Forms}{23}
-\indexentry{Google App Engine!Forms!Redirection}{23}
-\indexentry{Google App Engine!Templates}{24}
-\indexentry{Google App Engine!CSS}{25}
-\indexentry{Google App Engine!Google App Engine Datastore!GQL}{25}
-\indexentry{Google App Engine!Google App Engine Datastore!Types}{25}
-\indexentry{Cookies!HMAC}{26}
+\indexentry{python!Lists}{4}
+\indexentry{python!Lists!map}{4}
+\indexentry{python!Lists!filter}{4}
+\indexentry{python!Lists!sorted}{4}
+\indexentry{python!Lists!Selecting_certain_values}{5}
+\indexentry{python!Files}{5}
+\indexentry{python!itertools}{5}
+\indexentry{python!random}{5}
+\indexentry{/}{5}
+\indexentry{python!random!randint}{6}
+\indexentry{python!json}{6}
+\indexentry{python!json!loads}{6}
+\indexentry{python!json!dumps}{6}
+\indexentry{python!xml}{6}
+\indexentry{python!xml!minidom}{6}
+\indexentry{python!Exceptions}{7}
+\indexentry{python!range}{7}
+\indexentry{python!xrange}{7}
+\indexentry{python!Variables}{7}
+\indexentry{python!Variables!Global}{7}
+\indexentry{SQL}{8}
+\indexentry{SQL!index}{8}
+\indexentry{SQL!index!sequential scan}{8}
+\indexentry{ACID}{9}
+\indexentry{ACID!replication lag}{9}
+\indexentry{ACID!locking}{9}
+\indexentry{Generator Expressions}{9}
+\indexentry{Generator Functions}{10}
+\indexentry{Decorator Notation}{10}
+\indexentry{The Golden Ratio}{12}
+\indexentry{python!Future Imports}{14}
+\indexentry{Regular Expressions}{15}
+\indexentry{Regular Expressions!findall}{15}
+\indexentry{Regular Expressions!Kleene Operators}{15}
+\indexentry{Regular Expressions!search}{15}
+\indexentry{Regular Expressions!split}{15}
+\indexentry{Regular Expressions!sub}{15}
+\indexentry{Problems}{16}
+\indexentry{Problems!Water Pouring}{16}
+\indexentry{Problems!Bridge}{17}
+\indexentry{Problems!Missionaries and Cannibals}{19}
+\indexentry{ruby}{20}
+\indexentry{ruby!Kernel Test}{20}
+\indexentry{ruby!File}{20}
+\indexentry{ruby!File!basename}{20}
+\indexentry{ruby!File!Read line by line}{21}
+\indexentry{ruby!ARGF}{21}
+\indexentry{Scala}{21}
+\indexentry{Scala!variables!immutable}{22}
+\indexentry{Scala!variables!mutable}{22}
+\indexentry{Scala!function}{23}
+\indexentry{Scala!function!overloading}{23}
+\indexentry{Scala!functions!default value}{23}
+\indexentry{Scala!functions!higher order functions}{23}
+\indexentry{Scala!functions!anonymous functions}{24}
+\indexentry{Scala!functions!currying}{24}
+\indexentry{Algorithms}{25}
+\indexentry{Algorithms!Euclid's algorithm}{25}
+\indexentry{Algorithms!Fixed Point}{25}
+\indexentry{Algorithms!Big Theta}{26}
+\indexentry{Algorithms!factorial}{26}
+\indexentry{Finite State Machine}{27}
+\indexentry{Finite State Machine!non-deterministic FSM}{27}
+\indexentry{Finite State Machine!deterministic FSM}{27}
+\indexentry{HTML}{27}
+\indexentry{HTML!strong}{27}
+\indexentry{HTML!em}{27}
+\indexentry{HTML!b}{27}
+\indexentry{HTML!i}{27}
+\indexentry{HTML!Request}{27}
+\indexentry{HTML!Request!GET}{27}
+\indexentry{HTML!Request!POST}{28}
+\indexentry{HTTP Response}{28}
+\indexentry{HTTP Response!static}{28}
+\indexentry{HTTP Response!dynamic}{28}
+\indexentry{HTTP Response!web application}{28}
+\indexentry{HTML!HTML Header}{28}
+\indexentry{HTML!HTML Header!User-Agent}{28}
+\indexentry{HTML!HTML Header!Host}{28}
+\indexentry{HTML!br}{28}
+\indexentry{HTML!span}{28}
+\indexentry{HTML!div}{28}
+\indexentry{Cryptography}{28}
+\indexentry{Cryptography!Symmetric}{28}
+\indexentry{Cryptography!Symmetric!One Time Pad}{29}
+\indexentry{Cryptography!Asymmetric}{29}
+\indexentry{Monoalphabetic Substitution Ciper}{29}
+\indexentry{Kolmogorov Complexity}{30}
+\indexentry{Pseudo-Random Number Generator}{30}
+\indexentry{CBC Mode}{31}
+\indexentry{JavaScript}{34}
+\indexentry{CTR Mode}{34}
+\indexentry{Google App Engine}{35}
+\indexentry{Google App Engine!Handlers}{35}
+\indexentry{Google App Engine!Forms}{36}
+\indexentry{Google App Engine!Forms!Redirection}{36}
+\indexentry{Google App Engine!Templates}{36}
+\indexentry{Google App Engine!CSS}{38}
+\indexentry{Google App Engine!Google App Engine Datastore!GQL}{38}
+\indexentry{Google App Engine!Google App Engine Datastore!Types}{38}
+\indexentry{Google App Engine!Google App Engine Datastore!Console}{39}
+\indexentry{Cookies!HMAC}{39}

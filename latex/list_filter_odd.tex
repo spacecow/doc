@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{}anonymous function}
+\PY{n}{numbers} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+\PY{k}{print} \PY{n+nb}{filter}\PY{p}{(}\PY{k}{lambda}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}\PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numbers}\PY{p}{)} \PY{c}{\PYZsh{}--> [1, 3]}
+
+\PY{c}{\PYZsh{}list comprehension}
+\PY{k}{print} \PY{p}{[}\PY{n}{x} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{numbers} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]} \PY{c}{\PYZsh{}--> [1, 3]}
+
+\PY{k}{def} \PY{n+nf}{filter\PYZus{}maker1}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{k}{lambda} \PY{n}{a}\PY{p}{:}\PY{p}{[}\PY{n}{e} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{a} \PY{k}{if} \PY{n}{f}\PY{p}{(}\PY{n}{e}\PY{p}{)}\PY{p}{]}
+\PY{n}{filter\PYZus{}odds} \PY{o}{=} \PY{n}{filter\PYZus{}maker1}\PY{p}{(}\PY{k}{lambda}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}\PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{print} \PY{n}{filter\PYZus{}odds}\PY{p}{(}\PY{n}{numbers}\PY{p}{)} \PY{c}{\PYZsh{}--> [1, 3]}
+
+\PY{k}{def} \PY{n+nf}{filter\PYZus{}maker2}\PY{p}{(}\PY{n}{f}\PY{p}{)}\PY{p}{:}
+  \PY{k}{def} \PY{n+nf}{inner\PYZus{}filter}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{:} \PY{k}{return} \PY{n+nb}{filter}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{a}\PY{p}{)}
+  \PY{k}{return} \PY{n}{inner\PYZus{}filter}
+\PY{n}{filter\PYZus{}odds} \PY{o}{=} \PY{n}{filter\PYZus{}maker2}\PY{p}{(}\PY{k}{lambda}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}\PY{n}{x}\PY{o}{\PYZpc{}}\PY{l+m+mi}{2}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{print} \PY{n}{filter\PYZus{}odds}\PY{p}{(}\PY{n}{numbers}\PY{p}{)} \PY{c}{\PYZsh{}--> [1, 3]}
+\end{Verbatim}

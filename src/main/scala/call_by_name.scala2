@@ -1,0 +1,3 @@
+def constOne(x:Int, y:Int) = 1
+def loop: Boolean = loop
+def x = loop #OK

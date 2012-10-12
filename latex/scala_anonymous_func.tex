@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{object} \PY{n+nc}{anonymous\PYZus{}func}\PY{o}{\PYZob{}}
+  \PY{k}{def} \PY{n}{sum}\PY{o}{(}\PY{n}{f}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{=>}\PY{n+nc}{Int}\PY{o}{,} \PY{n}{a}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{,} \PY{n}{b}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=} \PY{o}{\PYZob{}}
+    \PY{k}{def} \PY{n}{loop}\PY{o}{(}\PY{n}{a}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{,} \PY{n}{acc}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=}
+      \PY{k}{if} \PY{o}{(}\PY{n}{a}\PY{o}{>}\PY{n}{b}\PY{o}{)} \PY{n}{acc}
+      \PY{k}{else} \PY{n}{loop}\PY{o}{(}\PY{n}{a} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{,} \PY{n}{f}\PY{o}{(}\PY{n}{a}\PY{o}{)} \PY{o}{+} \PY{n}{acc}\PY{o}{)}
+    \PY{n}{loop}\PY{o}{(}\PY{n}{a}\PY{o}{,} \PY{l+m+mi}{0}\PY{o}{)}
+  \PY{o}{\PYZcb{}}
+  
+  \PY{k}{def} \PY{n}{main}\PY{o}{(}\PY{n}{args}\PY{k}{:}\PY{k+kt}{Array}\PY{o}{[}\PY{k+kt}{String}\PY{o}{]}\PY{o}{)}\PY{o}{\PYZob{}}
+    \PY{n}{assert}\PY{o}{(}\PY{n}{sum}\PY{o}{(}\PY{n}{x}\PY{o}{=>}\PY{n}{x}\PY{o}{,} \PY{l+m+mi}{1}\PY{o}{,} \PY{l+m+mi}{10}\PY{o}{)} \PY{o}{==} \PY{l+m+mi}{55}\PY{o}{)}
+  \PY{o}{\PYZcb{}}
+\PY{o}{\PYZcb{}}
+\end{Verbatim}

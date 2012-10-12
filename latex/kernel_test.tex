@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?e}\PY{p}{,}\PY{l+s+s2}{"}\PY{l+s+s2}{/etc/passwd}\PY{l+s+s2}{"}\PY{p}{)}     \PY{c+c1}{\PYZsh{} e for exist, true}
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?e}\PY{p}{,}\PY{l+s+s2}{"}\PY{l+s+s2}{/does/not/exist}\PY{l+s+s2}{"}\PY{p}{)} \PY{c+c1}{\PYZsh{} false}
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?e}\PY{p}{,}\PY{l+s+s2}{"}\PY{l+s+s2}{/etc}\PY{l+s+s2}{"}\PY{p}{)}            \PY{c+c1}{\PYZsh{} true}
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?d}\PY{p}{,} \PY{l+s+s2}{"}\PY{l+s+s2}{/etc}\PY{l+s+s2}{"}\PY{p}{)}           \PY{c+c1}{\PYZsh{} d for directory, true}
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?d}\PY{p}{,} \PY{l+s+s2}{"}\PY{l+s+s2}{/etc/passwd}\PY{l+s+s2}{"}\PY{p}{)}    \PY{c+c1}{\PYZsh{} false}
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?r}\PY{p}{,} \PY{l+s+s2}{"}\PY{l+s+s2}{/etc/passwd}\PY{l+s+s2}{"}\PY{p}{)}    \PY{c+c1}{\PYZsh{} r for readable, true}
+\PY{n+nb}{p} \PY{n+nb}{test}\PY{p}{(}\PY{l+s+sc}{?w}\PY{p}{,} \PY{l+s+s2}{"}\PY{l+s+s2}{/etc/passwd}\PY{l+s+s2}{"}\PY{p}{)}    \PY{c+c1}{\PYZsh{} w for writable, false}
+\end{Verbatim}

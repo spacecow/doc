@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{xml.dom} \PY{k+kn}{import} \PY{n}{minidom}
+\PY{n}{xml} \PY{o}{=} \PY{l+s}{"""}\PY{l+s}{<xml>}
+\PY{l+s}{  <li>List 1</li>}
+\PY{l+s}{  <li>List 2</li>}
+\PY{l+s}{</xml>}\PY{l+s}{"""}
+\PY{n}{d} \PY{o}{=} \PY{n}{minidom}\PY{o}{.}\PY{n}{parseString}\PY{p}{(}\PY{n}{xml}\PY{p}{)}
+\PY{k}{print} \PY{p}{[}\PY{n}{e}\PY{o}{.}\PY{n}{childNodes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{nodeValue} \PY{k}{for} \PY{n}{e} \PY{o+ow}{in} \PY{n}{d}\PY{o}{.}\PY{n}{getElementsByTagName}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{li}\PY{l+s}{"}\PY{p}{)}\PY{p}{]}
+\PY{c}{\PYZsh{}--> [u'List 1', u'List 2']}
+\end{Verbatim}

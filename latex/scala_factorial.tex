@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{object} \PY{n+nc}{algorithms\PYZus{}factorial}\PY{o}{\PYZob{}}
+  \PY{k}{def} \PY{n}{factorial}\PY{o}{(}\PY{n}{n}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=} \PY{o}{\PYZob{}}
+    \PY{k}{def} \PY{n}{loop}\PY{o}{(}\PY{n}{acc}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{,} \PY{n}{n}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=} 
+      \PY{k}{if} \PY{o}{(}\PY{n}{n}\PY{o}{==}\PY{l+m+mi}{0}\PY{o}{)} \PY{n}{acc} 
+      \PY{k}{else} \PY{n}{loop}\PY{o}{(}\PY{n}{acc}\PY{o}{*}\PY{n}{n}\PY{o}{,} \PY{n}{n}\PY{o}{-}\PY{l+m+mi}{1}\PY{o}{)}
+    \PY{n}{loop}\PY{o}{(}\PY{l+m+mi}{1}\PY{o}{,} \PY{n}{n}\PY{o}{)} 
+  \PY{o}{\PYZcb{}}
+  \PY{k}{def} \PY{n}{main}\PY{o}{(}\PY{n}{args}\PY{k}{:}\PY{k+kt}{Array}\PY{o}{[}\PY{k+kt}{String}\PY{o}{]}\PY{o}{)}\PY{o}{\PYZob{}}
+    \PY{n}{assert}\PY{o}{(}\PY{n}{factorial}\PY{o}{(}\PY{l+m+mi}{4}\PY{o}{)} \PY{o}{==} \PY{l+m+mi}{24}\PY{o}{)}
+  \PY{o}{\PYZcb{}} 
+\PY{o}{\PYZcb{}}
+\end{Verbatim}

@@ -25,12 +25,20 @@
 %for images
 \usepackage{graphicx}
 
+%for strike-through
+\usepackage{ulem}
+\usepackage[parfill]{parskip}
+
 \begin{document}
 \maketitle
 
 \section{python}\index{python}
 
-\subsection{Testing}
+\subsection{Testing}\index{python!Testing}
+
+A \textbf{Regression Test} tests that the output of some function does not change
+when the program is refactored.
+
 \scriptsize
 \input{testing}
 
@@ -39,6 +47,35 @@
 \subsubsection{Dependency Injection}\index{python!Testing!Dependency Injection}
 
 \input{dependency_injection}
+
+
+
+\subsubsection{Assertions}\index{python!Testing!Assertion}
+
+\texttt{python -O} disables assertions
+
+
+\subsection{Debugging}
+
+\textbf{The Devil's Guide to Debugging} - \textit{Steve McConnell}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item Scatter output statements throughout the code. The more the better.
+\item Debug the program into existence. Keep on adding and removing statements until something works.
+\item Never back up earlier versions. Who can't remember what he or she did just 5 min ago?
+\item Don't bother understanding what the program should do. If it's not obvious, make it obvious.
+\item Don't waste time understanding the problem. Most problems are trivial, anyway.
+\item Use the most obvious fix. Fix the symptom not the problem.
+\end{list}
+
 
 
 \subsection{Profiling}
@@ -95,15 +132,38 @@ Merge two or more dictionaries
 
 
 
-\subsection{list}\index{python!list}
-
-\subsubsection{map}\index{python!list!map}
-
-\input{map}
+\subsection{Lists}\index{python!Lists}
 
 
+\subsubsection{map}\index{python!Lists!map}
 
-\subsection{itertools}\index{itertools}
+\input{list_map}
+
+
+\subsubsection{filter}\index{python!Lists!filter}
+
+\input{list_filter_odd}
+
+\input{list_filter_none}
+
+
+\subsubsection{sorted}\index{python!Lists!sorted}
+
+\input{list_sorted}
+
+
+\subsubsection{Selecting certain values}\index{python!Lists!Selecting_certain_values}
+
+\input{list_selecting_certain_values}
+
+
+
+\subsection{Files}\index{python!Files}
+
+
+
+
+\subsection{itertools}\index{python!itertools}
 
 \subsubsection{permutations}
 \input{permutations}
@@ -114,7 +174,7 @@ Merge two or more dictionaries
 \subsection{random}\index{python!random}
 
 
-\subsubsection{choice}\index{python!random!choice}
+\subsubsection{choice}\index/{python!random!choice}
 
 \input{random_choice_5letters}
 
@@ -129,11 +189,57 @@ A strategy that chooses at random from possible moves.
 
 
 
+\subsection{json}\index{python!json}
+
+\subsubsection{loads - load string}\index{python!json!loads}
+
+\input{json_loads}
+
+
+\subsubsection{dumps - dump string}\index{python!json!dumps}
+
+Json has to use double quotes to delineate a string.
+
+\input{json_dumps}
+
+
+
+\subsection{xml}\index{python!xml}AttributeError: 'module' object has no attribute 'urlopen'
+
+\subsubsection{minidom}\index{python!xml!minidom}
+
+\input{xml_minidom}
+
+
+
+\subsection{urllib2}
+
+\input{urllib2_urlopen}
+
+
+
+\subsection{Exceptions}\index{python!Exceptions}
+
+\input{exception}
+
+
+
+
 \subsection{range vs xrange}\index{python!range}\index{python!xrange}
 
 range creates a list in memory, but xrange is a generator, so it evaluates lazily.
 
 
+
+\subsection{Variables}\index{python!Variables}
+
+\subsubsection{Global}\index{python!Variables!Global}
+
+Local variables overrides a global of the same name. To prevent that behaviour and
+to be able to modify the variable within a function, python must be told to use the
+name in a global sense.
+
+\input{python_global_variable}
 
 
 \subsection{lambda}
@@ -141,7 +247,7 @@ range creates a list in memory, but xrange is a generator, so it evaluates lazil
 \input{lambda}
 
 
-\subsection{Something}
+\subsection{Internal methods}
 
 \subsubsection{\_\_name\_\_}
 
@@ -151,10 +257,13 @@ range creates a list in memory, but xrange is a generator, so it evaluates lazil
 
 \input{debug_fn_doc}
 
+\subsubsection{\_\_repr\_\_}
+
+The representation method is called whenever an object of the particular class is to be printed and returns a string representation of the object.
 
 
 
-\subsection{classes}
+\subsection{Classes}
 
 \input{class}
 
@@ -290,6 +399,8 @@ Another name for the identity function. If one of the debug tools are being used
 \subsection{for-loops}
 \input{forloop}
 
+\input{for_ie}
+
 \subsection{Substring}
 \input{substring}
 
@@ -328,10 +439,11 @@ where the \emph{r} actually means \emph{raw string} instead of \emph{regular exp
 \subsubsection{split}\index{Regular Expressions!split}
 \input{re_split}
 
-\subsection{sub}\index{Regular Expressions!sub}
+\subsubsection{sub}\index{Regular Expressions!sub}
 \input{re_sub}
 
-j\subsection*{•}
+
+\subsection*{•}
 
 Grammar describe context free languages, a more powerful set of strings than regular languages, and is represented by context free grammar. If a language is context-free, then that language is sometimes also regular.
 
@@ -366,6 +478,216 @@ A grammar is abiguous if at least 1 string in the grammar has more than 1 differ
 
 \input{sps}
 
+
+
+\section{ruby}\index{ruby}
+
+
+\subsection{Kernel Test}\index{ruby!Kernel Test}
+
+\input{kernel_test}
+
+
+\subsection{File}\index{ruby!File}
+
+\subsubsection{basename}\index{ruby!File!basename}
+
+Returns the last component of the filename given in file\_name, which must be formed using forward slashes (“/”) regardless of 
+the separator used on the local file system. If suffix is given and present at the end of file\_name, it is removed.
+
+\input{file_basename}
+
+\subsection{Read line by line}\index{ruby!File!Read line by line}
+
+\input{file_read_line_by_line}
+
+
+
+\subsection{ARGF}\index{ruby!ARGF}
+
+Reads from stdin
+
+\input{argf_stdin}
+
+or file
+
+\input{argf_file}
+
+
+
+\section{Scala}\index{Scala}
+
+\textbf{Recommended Books.} 
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item \textit{Structure and Interpretation of Computer Programs} by Harold Abelson and Gerald J. Sussman (1996) MIT Press (Functional Programming)
+\item \textit{Programming in Scala} by Martin Odersky, Lex Spoon and Bill Venners (2010) Artima (Scala)
+\item \textit{Scala for the Impatient} by Cay Horstmann (2012) Addison-Wesley (Scala - Free)
+\item \textit{Programming Scala} by Dean Wampler and Alex Payne (2008) O’Reilly (Scala)
+\item \textit{Scala in Depth} by Joshua D. Suereth (2012) Manning (Scala)
+\item \textit{Working Hard to Keep it Simple} by Martin Odersky (2011) Oscon Java keynote (Scala - Video)
+\end{list}
+
+\subsection{call-by-name}
+
+Scala normally uses call-by-value. For expressions in practice, call-by-value is often exponentially more efficient than call-by-name, because it avoids repeated recomputation of argument expressions that call-by-name entails. It also plays much nicer with imperative effects and side effects, since you tend to know much better when expressions will be evaluated.
+
+Terminates more often.
+
+Sometimes you want to force call-by-name and Scala lets you do that by preceeding the function parameter by =>.
+
+
+\subsection{Lists}
+
+Scala collections systematically distinguish between mutable and immutable collections. A mutable collection can be updated or extended in place. This means you can change, add, or remove elements of a collection as a side effect. Immutable collections, by contrast, never change. You have still operations that simulate additions, removals, or updates, but those operations will in each case return a new collection and leave the old collection unchanged. By default, Scala always picks immutable collections.
+
+\subsubsection{init}
+
+\input{scala_list_init}
+
+
+
+\subsection{variables}
+
+\subsubsection{immutable}\index{Scala!variables!immutable}
+
+An immutable "variable" is read-only and is declared with the keyword \textsf{val} and then also, must be defined.
+
+\begin{verbatim}
+scala> val array: Array[String] = new Array(5)
+array: Array[String] = Array(null, null, null, null, null)
+
+scala> array = new Array(2)
+<console>:8: error: reassignment to val
+       array = new Array(2)
+       
+scala> array(0) = "Hello"
+
+scala> array
+res1: Array[String] = Array(Hello, null, null, null, null)
+\end{verbatim}
+
+The \textsf{array} reference cannot be changed to point to a different \textsf{Array}, but the array itself
+can be modified.
+
+
+\subsection{mutable}\index{Scala!variables!mutable}
+
+A mutable variable is declared with the keyword \textsf{var} and also requires a definition.
+
+\begin{verbatim}
+scala> var string: String = "example"
+string: String = example
+
+scala> string = "next example"
+string: String = next example
+\end{verbatim}
+
+However, the \textsf{string} reference can be changed to point to a different \textsf{String} object as often as you want.
+
+
+
+\subsection{functions}\index{Scala!function}
+
+\subsubsection{overloading}\index{Scala!function!overloading}
+
+\input{scala_func_overloading}
+
+
+\subsubsection{default value}\index{Scala!functions!default value}
+
+You don't need to overload functions, when dealing with default values.
+
+\input{scala_func_default_value}
+
+
+\subsubsection{higher order functions}\index{Scala!functions!higher order functions}
+
+Functions that take other functions as parameters or that return functions as results are called \textit{higher order functions}.
+
+\input{scala_higher_order_func}
+
+
+\subsubsection{anonymous functions}\index{Scala!functions!anonymous functions}
+
+An anonymous function doesn't have a name.
+
+\textit{Tail-recursive}
+
+\input{scala_anonymous_func}
+
+
+
+\subsubsection{currying}\index{Scala!functions!currying}
+
+\textit{Currying} is named after its instigator, Haskell Brooks Curry (1900-1982), a logician. It is also no coincidence that Haskell Brooks Curry shares his first name with the programming language Haskell. However, the idea goes back even further to Schoenfinkel and Frege, but the term "currying" has stuck. 
+
+By defining a function that returns a function, you can separate the implicit function from the arguments, which can arrive in a different parameter list applied later on in a different context.
+
+\textit{Tail-recursive}
+
+\input{scala_currying}
+
+\input{scala_map_reduce}
+
+
+\section{Algorithms}\index{Algorithms}
+
+\subsection{Euclid's algorithm}\index{Algorithms!Euclid's algorithm}
+
+\textbf{In Scala}
+
+\input{scala_euclids_algorithm}
+
+
+
+\subsection{Fixed Point}\index{Algorithms!Fixed Point}
+
+Square root of x is a fixed point of the function that map y to x over y. If square root doesn't converge, we can make it converge by averaging successive values. This technique of stabilizing by averaging is general enough to merit being abstracted into its own function. 
+
+\textbf{In Scala}
+
+\input{scala_fixed_point}
+
+\begin{verbatim}
+scala> jmath.sqrt(2)
+1.0
+1.5
+1.4166666666666665
+1.4142156862745097
+res5: Double = 1.4142135623746899
+\end{verbatim}
+
+
+\subsection{Big Theta}\index{Algorithms!Big Theta}
+
+$\Theta(g(n))$: The set of functions that grow "equally" quickly as $g(n)$.\\
+$f(n)\in\Theta(g(n))$ iff $\exists c_1, c_2, n_0$ such that $0\le c_1*g(n) \le f(n) \le c_2*g(n), \forall n>n_0$\\
+$\Rightarrow g(n)\in\Theta(f(n))$
+
+
+\subsection{factorial}\index{Algorithms!factorial}
+
+\textbf{In Scala.} \textit{Tail-recursive}
+
+\textit{Tail recursive} functions are iterative processes. A \textit{tail-recursive} function call itself as its last action, which means that the function's stack frame can be reused.
+
+\input{scala_factorial}
+
+
+\section{Graphs}
+
+\subsection{Planar Graphs}
+
+Euler's formula: $n
+-m+r=2$
 
 
 \section{Game Theory}
@@ -457,12 +779,93 @@ Use the \emph{span}\index{HTML!span} for an inline container, which content can 
 
 If your browser crashes, you should quit using Internet Explorer.
 
-\section*{Cryptography}
+\section{Cryptography}\index{Cryptography}
 
-\subsection*{Shannon's Keyspace Theorem}
+\textit{Don't implement your own crypto!} unless it's for fun and learning.
+
+\textbf{Side-channel.} Ex. the time it takes to run the cryptation, cache storage can be visible, power consumption (used to break smart-cards).
+
+\subsection{Symmetric Cryptograpy}\index{Cryptography!Symmetric}
+
+$m \in M$, $c \in C$, $k \in K$ \\
+$E: M \times K \rightarrow C$, $D: C \times K \rightarrow M$
+
+\textit{Correctness property}: $\forall m,k: D_k(E(_k(m)) = m$
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item $E_k(m) = m + k, D_k(c) = c - k \rightarrow (m + k) - k = m$
+\item $E_k(m) = m, D_k(c) = c \rightarrow m$, but does not provide the security properties we need. We haven't hidden anything about the message.
+\item \sout{$E_k(m) = m \% k, D_k(c) = c * k$}, the output of the encryption is a smaller set than the number of messages, so some choices of message and key pairs map to the same value.
+\end{list}
+
+\textit{Security property}: Ideal would be that the ciphertext reveals nothing about the key or message.
+
+\begin{enumerate}
+\item Here's a mathematical proof, accepted by experts that shows the cipher is secure (only the One Time Pad)
+\item Here's a strong argument why breaking the cipher is at least as hard as some problem we believe is hard (Reduction Proof)
+\item Many, very smart, highly motivated people tried to break it but couldn't (often the best we can do)
+\item There are 834 quadrillion possible keys, so it must be secure (gives you an upper bound, not lower)
+\end{enumerate}
+
+
+
+
+
+The cipher must not depend on secrecy of the mechanism. It must not matter if it falls into the hands of the enemy. - \textit{Kerckhoff's Principle (1883)}
+
+Only the keys must be kept secret, so that the encryption and decryption algorithm can be made public and get tested, understood and get analysed by many people.
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item The keys used to encrypt and decrypt are the same.
+\item Can be very efficient. 
+\end{list}
+
+\subsubsection{The One Time Pad (OTP) (Vernam 1917)}\index{Cryptography!Symmetric!One Time Pad}
+
+The notion of the One Time Pad goes back to 1882, in Frank Miller's Codebook, discovered by Steven Bellovin in 2011.
+The first and only perfect cipher, but very impractical, because it requires a key with the same size as the message.
+Claude Shannon (1916-2001) wrote the first paper that really understood in a theoretical way what it means for a cipher to be good.
+
+$M = C = K = \{0,1\}^n$ \\
+$E_{k_0,\dots,k_{n-1}}(m_0,\dots,m_{n-1}) = c_0,\dots,c_{n-1}, c_i = m_i \oplus k_i$
+
+
+
+\subsection{Asymmetric Cryptograpy}\index{Cryptography!Asymmetric}
+
+\begin{list}{*}{
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{2em}
+\setlength{\labelwidth}{1.5em}
+\setlength{\labelsep}{0.5em}
+}
+\item The keys used to encrypt and decrypt can be different and if the keys are unrelated, that means you can reveal one of the keys without revealing the other.
+\item Tends to be very expensive. You need big keys and lots of mathematics (computation). 
+\item Most interesting protocols combine both symmetric and asymmetric croptography.
+\end{list}
+
+\subsection{Shannon's Keyspace Theorem}
 \label{sec:shannon's_keyspace_theorem}
 
-\subsection*{Monoalphabetic Substitution Cipher}\index{Monoalphabetic Substitution Ciper}
+\subsection{Monoalphabetic Substitution Cipher}\index{Monoalphabetic Substitution Ciper}
 
 Each letter in the alphabet is mapped to a substitution letter.
 
@@ -480,7 +883,7 @@ Another way to prove the cipher's imperfection is by showing a ciphertext \emph{
 c = \mathsf{aa}, m = \mathsf{cs}
 \end{equation}
 
-\subsection*{Randomness}
+\subsection{Randomness}
 \textbf{Kolmogorov Complexity}\index{Kolmogorov Complexity}.
 $K(s) = $length of the shortest possible description of s [Andrey Kolmogorov (1903-1987)]. If there isn't any short program that can describe the sequence, that's an indication that the sequence is random, e.i, \emph{s} is random if $K(s) = |s| + C$. There's no simplier way to understand the sequence other than to see the whole sequence. However, the Kolmogorov Complexity is \textbf{uncomputable}.
 
@@ -516,7 +919,7 @@ D: k_3
 \end{split}
 \end{equation}
  
-\subsection*{Cipher Block Chaning (CBC) Mode}\index{CBC Mode}
+\subsection{Cipher Block Chaning (CBC) Mode}\index{CBC Mode}
 
 Assuming \emph{E} has perfect secrecy (impossible since $|K| \ge |M|$), an attacker can still learn the length of the message and which blocks in \emph{m} are equal from a captured \emph{c}, where
 
@@ -670,9 +1073,15 @@ Finally, Section~\ref{conclusions} gives the conclusions.
 
 \section{Google App Engine}\index{Google App Engine}
 
+
+
 \subsection{Handlers}\index{Google App Engine!Handlers}
 
+\subsubsection{Regular handler}
+
 \input{handler}
+
+
 
 \subsection{Forms}\index{Google App Engine!Forms}
 
@@ -681,6 +1090,8 @@ Finally, Section~\ref{conclusions} gives the conclusions.
 User input need to be esacped.
 
 \input{engine_escape_html}
+
+
 
 \subsubsection{Redirection}\index{Google App Engine!Forms!Redirection}
 
@@ -708,14 +1119,17 @@ and write your main file
 
 \input{asciichan}
 
+
+
 \subsection{CSS}\index{Google App Engine!CSS}
 
 \input{app_css}
 
+
+
 \subsection{Google App Engine Datastore}
 \
 \textbf{Entity.} Tables, where the columns aren't fixed, all have id fields and have a notion of parents/ancestors which is a relation to other entities.
-
 
 
 \subsubsection{GQL}\index{Google App Engine!Google App Engine Datastore!GQL}
@@ -723,6 +1137,7 @@ and write your main file
 A simplified version of SQL, where all queries begins with \emph{select *}, there are no joins and all queries must be indexed.
 
 \input{gql}
+
 
 \subsubsection{Types}\index{Google App Engine!Google App Engine Datastore!Types}
 
@@ -748,6 +1163,12 @@ A simplified version of SQL, where all queries begins with \emph{select *}, ther
 \end{list}
 
 \input{post_model}
+
+
+\subsubsection{Console}\index{Google App Engine!Google App Engine Datastore!Console}
+
+Go to address: localhost:8080/\_ah/admin
+
 
 \subsection{Cookies}
 
@@ -804,6 +1225,13 @@ If your data has structure, use Oracle. If your data has no structure, use Hadoo
 
 Time flies like an arrow, fruit flies like a banana.
 
+Let's beat this dead horse a little big longer.
+
+Before you embark on a journey of revenge, dig two graves. - Confucius (504 B.C.)
+
+Beware of bugs in the above code. I have only proven it correct, not tried it. - Donald Knuth
+
+Before you learn how to see, you must realize your are blind.
 
 
 \bibliographystyle{abbrv}

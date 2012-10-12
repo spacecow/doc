@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{object} \PY{n+nc}{map\PYZus{}reduce}\PY{o}{\PYZob{}}
+  \PY{k}{def} \PY{n}{map\PYZus{}reduce}\PY{o}{(}\PY{n}{f}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{=>}\PY{n+nc}{Int}\PY{o}{,} \PY{n}{combine}\PY{k}{:}\PY{o}{(}\PY{k+kt}{Int}\PY{o}{,} \PY{k+kt}{Int}\PY{o}{)}\PY{o}{=>}\PY{n+nc}{Int}\PY{o}{,} \PY{n}{zero}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{o}{(}\PY{n}{a}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{,} \PY{n}{b}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=}
+    \PY{k}{if} \PY{o}{(}\PY{n}{a}\PY{o}{>}\PY{n}{b}\PY{o}{)} \PY{n}{zero}
+    \PY{k}{else} \PY{n}{combine}\PY{o}{(}\PY{n}{f}\PY{o}{(}\PY{n}{a}\PY{o}{)}\PY{o}{,} \PY{n}{map\PYZus{}reduce}\PY{o}{(}\PY{n}{f}\PY{o}{,} \PY{n}{combine}\PY{o}{,} \PY{n}{zero}\PY{o}{)}\PY{o}{(}\PY{n}{a}\PY{o}{+}\PY{l+m+mi}{1}\PY{o}{,} \PY{n}{b}\PY{o}{)}\PY{o}{)}
+
+  \PY{k}{def} \PY{n}{product}\PY{o}{(}\PY{n}{f}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{=>}\PY{n+nc}{Int}\PY{o}{)}\PY{o}{(}\PY{n}{a}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{,} \PY{n}{b}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=} \PY{n}{map\PYZus{}reduce}\PY{o}{(}\PY{n}{f}\PY{o}{,} \PY{o}{(}\PY{n}{x}\PY{o}{,} \PY{n}{y}\PY{o}{)}\PY{o}{=>}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{,} \PY{l+m+mi}{1}\PY{o}{)}\PY{o}{(}\PY{n}{a}\PY{o}{,} \PY{n}{b}\PY{o}{)}
+  \PY{k}{def} \PY{n}{factorial}\PY{o}{(}\PY{n}{n}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)} \PY{k}{=} \PY{n}{product}\PY{o}{(}\PY{n}{x}\PY{o}{=>}\PY{n}{x}\PY{o}{)}\PY{o}{(}\PY{l+m+mi}{1}\PY{o}{,}\PY{n}{n}\PY{o}{)}
+
+  \PY{k}{def} \PY{n}{sum}\PY{o}{(}\PY{n}{f}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{=>}\PY{n+nc}{Int}\PY{o}{)}\PY{o}{(}\PY{n}{a}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{,} \PY{n}{b}\PY{k}{:}\PY{k+kt}{Int}\PY{o}{)}\PY{k}{:} \PY{k+kt}{Int} \PY{o}{=} \PY{n}{map\PYZus{}reduce}\PY{o}{(}\PY{n}{f}\PY{o}{,} \PY{o}{(}\PY{n}{x}\PY{o}{,} \PY{n}{y}\PY{o}{)}\PY{o}{=>}\PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{o}{,} \PY{l+m+mi}{0}\PY{o}{)}\PY{o}{(}\PY{n}{a}\PY{o}{,} \PY{n}{b}\PY{o}{)}
+
+  \PY{k}{def} \PY{n}{main}\PY{o}{(}\PY{n}{args}\PY{k}{:}\PY{k+kt}{Array}\PY{o}{[}\PY{k+kt}{String}\PY{o}{]}\PY{o}{)}\PY{o}{\PYZob{}}
+    \PY{n}{assert}\PY{o}{(}\PY{n}{product}\PY{o}{(}\PY{n}{x}\PY{o}{=>}\PY{n}{x}\PY{o}{)}\PY{o}{(}\PY{l+m+mi}{1}\PY{o}{,}\PY{l+m+mi}{5}\PY{o}{)} \PY{o}{==} \PY{l+m+mi}{120}\PY{o}{)}
+    \PY{n}{assert}\PY{o}{(}\PY{n}{factorial}\PY{o}{(}\PY{l+m+mi}{5}\PY{o}{)} \PY{o}{==} \PY{l+m+mi}{120}\PY{o}{)}
+    \PY{n}{assert}\PY{o}{(}\PY{n}{sum}\PY{o}{(}\PY{n}{x}\PY{o}{=>}\PY{n}{x}\PY{o}{)}\PY{o}{(}\PY{l+m+mi}{1}\PY{o}{,}\PY{l+m+mi}{5}\PY{o}{)} \PY{o}{==} \PY{l+m+mi}{15}\PY{o}{)}
+  \PY{o}{\PYZcb{}}
+\PY{o}{\PYZcb{}}
+\end{Verbatim}
